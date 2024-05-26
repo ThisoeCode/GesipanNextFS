@@ -1,7 +1,7 @@
 # Thisoe ignores
 .vscode/
-
-
+TODO
+*.txt
 
 
 # dependencies

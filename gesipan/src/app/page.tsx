@@ -1,8 +1,6 @@
+import type{Metadata}from"next"
 
-
-export default function Home() {
-  return (
-    <main>
-    </main>
-  );
+export default function Gesipan() {
+  return <main>
+  </main>
 }
