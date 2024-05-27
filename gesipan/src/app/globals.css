@@ -4,10 +4,17 @@
 
 @media (prefers-color-scheme: dark) {
   :root{
-    --thisoe:#077567;
+    /* --thisoe:#077567; */
   }
 }
 
-html,body{
+body{
   margin:0;
+}
+
+
+/*******/
+nav{}
+.head-link{
+
 }
