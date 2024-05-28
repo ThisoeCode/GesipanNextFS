@@ -1,19 +1,20 @@
-import type{Metadata}from"next"
-import"bootstrap/dist/css/bootstrap.min.css"
+import{Metadata}from"next"
 import"./globals.css"
+import NAV from "@/components/Head"
 
 export const metadata:Metadata={
   title: "Gesipan | Thisoe",
-  description: "Thisoe - Gesipan Project using Next.js\n...",
-};
+  description: "Thisoe Projects - Gesipan Project using Next.js\n...",
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return <html lang="en">
     <body>
+      <NAV/>
       {children}
     </body>
   </html>

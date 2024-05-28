@@ -1,11 +1,13 @@
-import HeadLink from "./HeadLink"
+import HL from "./HeadLink"
 
-export default function GesipanHead(){
+export default function NAV(){
   return <>
     <header>
       Oh hi
       <nav>
-        <HeadLink href="#">Hello Thisoe</HeadLink>
+        <HL href="bbs">Bulletin Board System</HL>
+        <HL href="post">Write a New Post</HL>
+        <HL href="admin">Admin System</HL>
       </nav>
     </header>
   </>

@@ -1,17 +1,11 @@
-import Link from "next/link"
-import { AnchorHTMLAttributes, DetailedHTMLProps } from "react"
+import Link,{LinkProps} from "next/link"
 
 type HeadLinkProp = {
   children:React.ReactNode
-  href:string
-} & DetailedHTMLProps<
-  AnchorHTMLAttributes<HTMLAnchorElement>,
-  HTMLAnchorElement
->
+} & LinkProps
 
-export default function HeadLink({children,href,...props}:HeadLinkProp){
+export default function HL({children,...props}:HeadLinkProp){
   return <Link className="head-link"
-    href={href}
     {...props}
    >{children}</Link>
 }
