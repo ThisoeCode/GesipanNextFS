@@ -1,5 +1,5 @@
 
 
-export default function Gesimul(){
-
+export default function _(){
+  return <></>
 }
