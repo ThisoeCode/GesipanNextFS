@@ -1,13 +1,13 @@
-import HL from "./HeadLink"
+import HeadLink from "./HeadLink"
 
 export default function NAV(){
   return <>
     <header>
-      Oh hi
+      Rich Gesipan
       <nav>
-        <HL href="bbs">Bulletin Board System</HL>
-        <HL href="post">Write a New Post</HL>
-        <HL href="admin">Admin System</HL>
+        <HeadLink href="bbs">Bulletin Board System</HeadLink>
+        <HeadLink href="post">Write a New Post</HeadLink>
+        <HeadLink href="admin">Admin System</HeadLink>
       </nav>
     </header>
   </>

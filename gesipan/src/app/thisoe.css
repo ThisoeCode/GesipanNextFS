@@ -1,0 +1,20 @@
+:root{
+  --thisoe:#178577;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root{
+    /* --thisoe:#077567; */
+  }
+}
+
+body{
+  margin:0;
+}
+
+
+/*******/
+nav{}
+.head-link{
+
+}
