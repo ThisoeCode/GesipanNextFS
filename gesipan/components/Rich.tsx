@@ -11,11 +11,11 @@ export default function RichForm({api}:{api:string}){
 
   const form = useForm<T.C.form>({
     mode:'onChange',
-    defaultValues:{
-      title:'No Title',
-      sign:'Anonymous',
-      rich:'This post has no content.',
-    },
+    // defaultValues:{
+    //   title:'No Title',
+    //   sign:'Anonymous',
+    //   rich:'This post has no content.',
+    // },
     resolver: zodResolver(T.form),
   })
 
@@ -32,7 +32,32 @@ export default function RichForm({api}:{api:string}){
           render={({field})=>(
             <FormItem>
               <FormControl>
-                <Input placeholder="Title..." {...field} />
+                <Input placeholder="Bulletin Title" {...field} />
+              </FormControl>
+              <FormMessage/>
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="sign"
+          render={({field})=>(
+            <FormItem>
+              <FormControl>
+                <Input placeholder="Author Name" {...field} />
+              </FormControl>
+              <FormMessage/>
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="rich"
+          render={({field})=>(
+            <FormItem>
+              <FormControl>
+                <Input placeholder="Content..." {...field} />
+                {/* TODO change to tiptap */}
               </FormControl>
               <FormMessage/>
             </FormItem>
