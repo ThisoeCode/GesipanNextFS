@@ -10,15 +10,42 @@
 
 body{
   margin:0;
-  background-color:#ccc;
+  /* background-color:#ccc; */
 }
 
 
 /*******/
+
+/******* HEAD *******/
 nav{
   display:flex; flex-direction:row;
   justify-content:center;
   margin:0 7pt 18px;
   gap:7pt;
   flex-wrap:wrap;
+}
+/* nav a img{
+  width:27pt; height:27pt
+} */
+
+
+
+/******* POST *******/
+#post-form,#post-form input,#post-form button{all:unset}
+
+#post-form{
+
+}
+
+#post-form button{
+  width:50pt;height:50pt;
+  display:flex;
+  border-radius:99pt;
+  cursor:pointer;
+  transition:background-color .2s ease;
+}#post-form button:hover{background-color:#eee}
+#post-form button:active{background-color:#ccc}
+#post-form button img{
+  margin:auto;
+  transform:translate(-2px,2px)
 }

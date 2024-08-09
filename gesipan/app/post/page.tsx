@@ -1,8 +1,8 @@
-import RichForm from "@/components/Rich"
+import PostForm from "@/components/Rich"
 
 export default function _(){
   return <main>
     <div id="a"></div>
-    <RichForm api='av8d'/>
+    <PostForm api='av8d'/>
   </main>
 }
