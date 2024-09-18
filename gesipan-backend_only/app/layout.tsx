@@ -17,10 +17,19 @@ export default function RootLayout(
       <header>Thisoe&apos;s Gesipan</header>
       <nav><i>
         <Link href='gesipan'>Bulletin Board System</Link><hr/>
-        <Link href='post'>Write a New Post</Link><hr/>\
-        <Link href='admin'>BBS Admin</Link>
+        <Link href='post'>Write a New Post</Link><hr/>
+        <Link href='admin' id='admin'>BBS Admin</Link>
       </i></nav>
-      <i id="iframe">{children}</i>
+      <i id="iframe">
+        <main>{children}</main>
+      </i>
+      <footer>
+        <p>
+          <a href="https://thisoe.dev/">Thisoe.dev</a> | <a href="https://thisoe.dev/project/">Showcase</a>
+          <br/>
+          © 2024 Thisoe
+        </p>
+      </footer>
     </body>
   </html>
 }
