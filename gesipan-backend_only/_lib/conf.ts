@@ -4,6 +4,7 @@ if(!SELF_URL){ // TS mustdo
 }
 /** API path base ("http://localhost:0/api/") */
 export const API = SELF_URL+'/api/'
+export const headJ = {'Content-Type':'application/json'}
 
 /** Get user's timezone */
 export const TIMEZONE = Intl.DateTimeFormat().resolvedOptions().timeZone
@@ -20,6 +21,12 @@ export interface mainFormat {
   dt:number
 /** gesimul status */
   stat:-1|0|1|2|3
+}
+
+export interface PUTform {
+  title:string
+  name:string
+  bull:string
 }
 
 export type Load = {

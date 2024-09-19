@@ -1,10 +1,14 @@
 'use server'
 import{mainDB}from"@/_lib/_insu"
-import{mainFormat}from"@/_lib/conf"
+import{API,headJ,mainFormat}from"@/_lib/conf"
 import{servTitle as t}from"@/_lib/logsys"
 import{revalidatePath}from"next/cache"
 const ermsg='[THISOE🩵DEBUG] Form submitting error: UNKNOWN ERROR!'
 
+/**
+ * Serve for `useActionState`
+ * @description DISABLED BEFORE `React 19 RC` CAME OUT (Thisoe 2024/09/19)
+ */
 export default async function ACTION(
   prevStat:string|number|void|null,
   formData:FormData,
@@ -46,5 +50,31 @@ export default async function ACTION(
     t.t500(pro+':0100256')
     console.dir(_)
     return ermsg
+  }
+}
+
+
+
+import axios from "axios"
+
+/** 
+ * Serve for `FormData`
+ * @returns {boolean,null} false when 
+ * @description Use `as Record<string, string>`
+ */
+export const put = async(data:Record<string,string>)=>{
+  const SERV_ID = crypto.randomUUID()
+  try{
+    const res = await axios.put(
+      API+'put',
+      [data,SERV_ID], {headers:headJ}
+    )
+    if(res.status >= 200 && res.status < 300){
+      return 0
+    }
+    return SERV_ID
+  }catch(e){
+    console.error(`[Thisoe] Error: AXIOSNOTPUTTING {{ ${e} }} WITH SERV_ID::`+SERV_ID)
+    return SERV_ID
   }
 }

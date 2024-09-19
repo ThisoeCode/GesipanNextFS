@@ -1,8 +1,10 @@
 'use client'
-import{useActionState,useEffect}from"react"
-import _serv from"./_use_serv"
+import{FormEvent,useState}from"react"
+import{put}from"./_use_serv"
+import{redirect as r}from'next/navigation'
 
 export default function _(){
+  // prevent `Enter` key's default
   const e =
     (e:React.KeyboardEvent<HTMLInputElement>)=>{
       if(e.key === 'Enter'){
@@ -10,15 +12,26 @@ export default function _(){
       }
     }
 
-    /** TODO : what is initstat? */
-    const initStat = null
-    const[err,action,isPending]=useActionState(_serv,initStat)
+    const [isPending,setPending] = useState(false)
 
-    useEffect(()=>{
-      err&&alert(err)
-    },[err])
+  const _put = async(e:FormEvent<HTMLFormElement>)=>{
+    setPending(true)
+    e.preventDefault()
+    const res = await put(
+      Object.fromEntries(
+        (new FormData(e.currentTarget)).entries()
+      ) as Record<string, string>
+    )
+    
+    res
+      ? (()=>{
+          setPending(false)
+          alert("Failed to post.\nPlease contact Thisoe with your visitor ID: "+res)
+        })()
+      : r('gesipan')
+  }
 
-  return <form action={action} id="post">
+  return <form onSubmit={_put} id="post">
     <input
       id="posttitle"
       type="text"
@@ -33,9 +46,7 @@ export default function _(){
       placeholder="Author Name"
       onKeyDown={e}
     /><hr/>
-    <textarea
-      name="bull"
-    ></textarea>
+    <textarea name="bull"></textarea>
     <input value=""
       id="postsubmit"
       type="submit"
