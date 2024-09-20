@@ -9,7 +9,7 @@ export default async function _(){
         method: 'GET',
         cache: 'no-store',
       })).json()
-    if(data.thisoe===200){
+    if(data.thisoe===200&&data.docs){
       data.docs.forEach((v,i)=>{
         rows.push(
           <Arow

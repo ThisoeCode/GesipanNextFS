@@ -1,13 +1,9 @@
 import{NextRequest,NextResponse}from"next/server"
-import type{WithId,Document}from'mongodb'
+import{Thisoe}from"./conf"
 
 /** NextResponse.json */
 export const NJ = (
-  data:Record<
-    string,
-    string|number|undefined|null|
-    WithId<Document>[]
-  >,
+  data:Record<string,Thisoe>,
   status:number = 200
 )=>{
   return NextResponse.json(data,{status})

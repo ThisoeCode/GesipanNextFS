@@ -5,9 +5,9 @@ import{NJ,servTitle as t}from"@/_lib/logsys"
 
 const pro='PUT'
 
-export async function POST(req:NextRequest){t.t1(req)
+export async function PUT(req:NextRequest){t.t1(req)
 
-  const reqJ = (await req.json())[0]
+  const reqJ = (await req.json())
   const reqbody = reqJ[0]
   const req_SERV_ID = reqJ[1]
   const servidMsg = '\nSERV_ID::'+req_SERV_ID
@@ -35,7 +35,7 @@ export async function POST(req:NextRequest){t.t1(req)
       const res = await(await mainDB)
         .insertOne(obj)
       const id = res.insertedId.toString('hex')
-      console.log(`[${t.t2+pro} 200] Added new docu: ObjectId[${id}]`+servidMsg)
+      console.log(`[${t.t2+pro} 201] Added new docu: ObjectId[${id}]`+servidMsg)
       return NJ({rid:id})
     }catch(e){
       console.error(`[${t.t4+pro} 500] Fail to add docu!`+servidMsg)

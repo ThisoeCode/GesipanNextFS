@@ -2,7 +2,7 @@ import Link from"next/link"
 import{TIMEZONE}from"@/_lib/conf"
 export default function Arow(
   {no,t,a,d,g,}:{
-    no:number,
+    no:string,
     t:string,
     a:string,
     d:number,

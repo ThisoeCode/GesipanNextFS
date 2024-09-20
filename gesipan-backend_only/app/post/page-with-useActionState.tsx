@@ -1,6 +1,6 @@
 'use client'
 import{useActionState,useEffect}from"react"
-import _serv from"./_use_serv"
+import _serv from"@/components/_use_serv"
 
 export default function _(){
   const e =

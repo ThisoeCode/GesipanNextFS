@@ -10,6 +10,15 @@ export const headJ = {'Content-Type':'application/json'}
 export const TIMEZONE = Intl.DateTimeFormat().resolvedOptions().timeZone
 
 
+
+// TYPES
+import { WithId } from "mongodb"
+/** An everything type. */
+export type Thisoe = 
+string|number|boolean|undefined|null|
+WithId<Document>[]|
+mainFormat|Load
+
 export interface mainFormat {
 /** title */
   t:string
@@ -23,12 +32,6 @@ export interface mainFormat {
   stat:-1|0|1|2|3
 }
 
-export interface PUTform {
-  title:string
-  name:string
-  bull:string
-}
-
 export type Load = {
   thisoe: 100|200|201|202|304|400|403|404|422|500|501,
   docs?: {
@@ -39,4 +42,3 @@ export type Load = {
     gid:number
   }[],
 } | {thisoe:null}
-
