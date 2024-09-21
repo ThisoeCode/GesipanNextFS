@@ -16,9 +16,9 @@ export default function RootLayout(
     <body>
       <header>Thisoe&apos;s Gesipan</header>
       <nav><i>
-        <Link href='gesipan'>Bulletin Board System</Link><hr/>
-        <Link href='post'>Write a New Post</Link><hr/>
-        <Link href='admin' id='admin'>BBS Admin</Link>
+        <Link href='/gesipan'>Bulletin Board System</Link><hr/>
+        <Link href='/post'>Write a New Post</Link><hr/>
+        <Link href='/admin' id='admin'>BBS Admin</Link>
       </i></nav>
       <i id="iframe">
         <main>{children}</main>

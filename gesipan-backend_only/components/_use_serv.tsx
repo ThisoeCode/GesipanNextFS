@@ -1,6 +1,6 @@
 'use server'
 import{mainDB}from"@/_lib/_insu"
-import{API,headJ,mainFormat}from"@/_lib/conf"
+import{API,headJ,mainFormat,TGID}from"@/_lib/conf"
 import{servTitle as t}from"@/_lib/logsys"
 import{revalidatePath}from"next/cache"
 const ermsg='[THISOE🩵DEBUG] Form submitting error: UNKNOWN ERROR!'
@@ -19,6 +19,7 @@ export default async function ACTION(
   try{
     // Generate OBJ
     const obj:mainFormat = {
+      g:TGID(),
       t:_get("title"),
       n:_get("name"),
       c:_get("bull"),
@@ -32,8 +33,6 @@ export default async function ACTION(
           .insertOne(obj)
         const id = res.insertedId.toString('hex')
         console.log(`[${t.t2+pro} 200] Added new docu: ObjectId[${id}]`)
-        console.log("typeof prevStat = "+typeof prevStat) // TODO REMOVE
-        console.log(prevStat) // TODO REMOVE
         revalidatePath('/')
       }catch(e){
         console.error(`[${t.t4+pro} 500] Fail to add document!`)

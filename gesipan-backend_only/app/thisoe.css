@@ -129,7 +129,7 @@ footer a{
 
 
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 539px) {
   #iframe{margin:0;width:100%}
   #admin,nav i hr:nth-last-of-type(1){display:none}
 }
@@ -193,7 +193,7 @@ footer a{
 #emptymsg a:hover{text-decoration:underline;background:transparent}
 
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 539px) {
   #th{display:none}
   .tr:nth-child(odd){background:#f7f7f7}
   .tr:nth-child(even){background:#eee}
@@ -335,7 +335,7 @@ article h2,#dt{
   border-top:#ccc solid thin;
 }
 #comment{
-  /*display:flex;*/ flex-direction:column;
+  display:flex; flex-direction:column;
   overflow:hidden;/*<hr/> overflowing*/
   margin-bottom:27pt;
 }
@@ -366,7 +366,8 @@ article h2,#dt{
   line-height:16pt;
   overflow-x:hidden;
   border-bottom:#333 solid 2px;
-  transition:border-color .2s ease;
+  transition:border-color .2s ease,
+    height .3s ease-out;
 }
 .newcomment div{
   /*display:flex;*/ flex-direction:row;

@@ -1,21 +1,21 @@
 import Link from"next/link"
 import{TIMEZONE}from"@/_lib/conf"
 export default function Arow(
-  {no,t,a,d,g,}:{
-    no:string,
-    t:string,
-    a:string,
-    d:number,
-    g:number,
+  {no,title,ann,date,g,}:{
+    no:number,
+    title:string,
+    ann:string,
+    date:number,
+    g:string,
   }
 ){
-  return <Link className='tr' href={'detail?g='+g}>
+  return <Link className='tr' href={'/detail/'+g}>
     <p>{no}</p>
-    <p>{t}</p>
-    <p>{a}</p>
+    <p>{title}</p>
+    <p>{ann}</p>
     <p>{ // convert unixTimestamp to date
       (()=>{
-        return new Date(d*1000)
+        return new Date(date*1000)
           .toLocaleDateString(undefined,{
             year:'numeric',
             month:'2-digit',
