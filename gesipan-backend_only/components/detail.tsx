@@ -19,8 +19,8 @@ export default function Detail({data}:{data:mainFormat}){
   return <>
     <article>
       <h1>{data.t}</h1>
-      <h2>{data.n}</h2>
-      <i id='dt'>{dt}</i>
+      <h2 title={"Post Author: "+data.n}>{data.n}</h2>
+      <i  title={"Time Posted:  "+dt.replace("　",'  at ')} id='dt'>{dt}</i>
       <p id='maintxt' style={{whiteSpace:'pre-wrap'}}>{data.c}</p>
     </article>
 

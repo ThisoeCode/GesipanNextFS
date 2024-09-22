@@ -170,6 +170,8 @@ footer a{
 .tr p:nth-child(3){width:var(--r3)}
 .tr p:nth-child(4){width:var(--r4);text-overflow:clip}
 
+a.tr{transition:background-color .2s ease;}
+
 #th{
   position:sticky;
   top:0;left:0;
@@ -189,6 +191,16 @@ footer a{
 #emptymsg a{font-size:12pt;color:var(--thisoe);cursor:pointer}
 #emptymsg a:hover{text-decoration:underline;background:transparent}
 
+#goto-post{
+  float:right;
+  width:21pt; height:21pt;
+  margin:7pt 3pt; padding:3pt;
+  border-radius:3pt;
+  cursor:pointer;
+}
+#goto-post svg{width:100%;height:100%}
+#goto-post path{transition:.2s}
+#goto-post:hover svg path{fill:var(--thisoe)}
 
 @media only screen and (max-width: 539px) {
   #th{display:none}
@@ -229,8 +241,6 @@ footer a{
 #post{
   margin:auto;
   padding:9pt 0 18pt;
-  width:calc(100% - 2pt);
-  height:calc(93% - 18pt);
   max-width:720px;
   display:flex; flex-direction:column;
   align-items:center;
@@ -263,7 +273,7 @@ footer a{
 #post textarea{
   resize:none;
   width:calc(93% - 12pt);
-  height:calc(81vh - 72pt);
+  height:calc(99vh - 270pt);
   min-height:50pt;
   padding:7pt;
   font-size:12pt;
