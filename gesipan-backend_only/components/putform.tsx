@@ -10,17 +10,19 @@ interface props {
 
 export default function PostForm({}:props){
   // prevent `Enter` key's default
-  const e =
+  const
+  e =
     (e:React.KeyboardEvent<HTMLInputElement>)=>{
       if(e.key === 'Enter'){
         e.preventDefault()
       }
-    }
+    },
 
-  const r = useRouter()
-  const [isPending,setPending] = useState(false)
+  r = useRouter(),
 
-  const _put = async(e:FormEvent<HTMLFormElement>)=>{
+  [isPending,setPending] = useState(false),
+
+  _put = async(e:FormEvent<HTMLFormElement>)=>{
     setPending(true)
     e.preventDefault()
     const data = Object.fromEntries(
@@ -40,7 +42,10 @@ export default function PostForm({}:props){
     : r.push('gesipan')
   }
 
-  return <form onSubmit={_put} id="post">
+  return <form id="post"
+  onSubmit={_put}
+  className={isPending?'pending':''}
+  >
     <input
       id="posttitle"
       type="text"

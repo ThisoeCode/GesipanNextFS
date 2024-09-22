@@ -1,12 +1,12 @@
 import Link from"next/link"
 import{TIMEZONE}from"@/_lib/conf"
 export default function Arow(
-  {no,title,ann,date,g,}:{
+  {no,title,ann,date,g='0',}:{
     no:number,
     title:string,
     ann:string,
     date:number,
-    g:string,
+    g?:string,
   }
 ){
   return <Link className='tr' href={'/detail/'+g}>

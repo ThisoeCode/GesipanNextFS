@@ -224,6 +224,10 @@ footer a{
 
 
 /* POST */
+.pending,.pending *{
+  background-color: #ccc;
+  color:#777;
+}
 
 #post{
   margin:auto;
