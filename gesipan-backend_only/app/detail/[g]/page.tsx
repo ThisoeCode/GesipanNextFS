@@ -11,8 +11,10 @@ export default async function _({params:{g}}:{params:{g:string}}){
 
   const SERV_ID = crypto.randomUUID().replace(/\-/g,'').slice(7)
 
+  console.log("[TEST] GESIMUL::"+gesimul)
+
   // 1. Show Gesimul
-  if(gesimul && gesimul.thisoe===200 && gesimul.docs){
+  if(gesimul && gesimul.thisoe===200 && typeof gesimul.docs !='undefined'){
     return <Detail data={gesimul.docs[0]}/>
   }
   // 2. ERROR: Gesimul Do Not Exist
