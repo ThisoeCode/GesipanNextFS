@@ -21,7 +21,7 @@ export default function Detail({data}:{data:mainFormat}){
       <h1>{data.t}</h1>
       <h2>{data.n}</h2>
       <i id='dt'>{dt}</i>
-      <p id="maintxt">{data.c}</p>
+      <p id='maintxt' style={{whiteSpace:'pre-wrap'}}>{data.c}</p>
     </article>
 
     <section id="comment"><hr id="chr"/>

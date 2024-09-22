@@ -20,9 +20,9 @@ export default function RootLayout(
         <Link href='/post'>Write a New Post</Link><hr/>
         <Link href='/admin' id='admin'>BBS Admin</Link>
       </i></nav>
-      <i id="iframe">
-        <main>{children}</main>
-      </i>
+
+      <main>{children}</main>
+
       <footer>
         <p>
           <a href="https://thisoe.dev/">Thisoe.dev</a> | <a href="https://thisoe.dev/project/">Showcase</a>

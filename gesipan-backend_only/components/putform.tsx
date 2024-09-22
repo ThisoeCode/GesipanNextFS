@@ -39,7 +39,7 @@ export default function PostForm({}:props){
           setPending(false)
           alert("Failed to post.\nPlease contact Thisoe with your visitor ID: "+res)
         })()
-    : r.push('gesipan')
+    : r.push('gesipan?posted')
   }
 
   return <form id="post"

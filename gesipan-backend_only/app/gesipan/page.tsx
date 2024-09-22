@@ -1,2 +1,6 @@
 import Atable from "@/components/atable"
-export default function _(){return <Atable/>}
+import{GesipanProps}from"@/_lib/conf"
+
+export default function _({searchParams}:GesipanProps){
+  return Atable({searchParams})
+}

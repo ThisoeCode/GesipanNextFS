@@ -35,6 +35,8 @@ string|number|boolean|undefined|null|
 WithoutId<Document>|WithoutId<Document>[]|
 mainFormat|Load
 
+export interface GesipanProps {searchParams:{posted?:string}}
+
 export interface mainFormat {
 /** TGID */
   g?:string
