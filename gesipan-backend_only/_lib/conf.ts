@@ -21,7 +21,7 @@ export const TGID = ()=>{
   // make UUID
   const regx=/^.*?(-)/
   const x = crypto.randomUUID(), uu = regx.exec(x)
-  return result+'+'+(uu?uu[0]:`bruh_${x}`).slice(0,-1)
+  return result+(uu?uu[0]:`bruh_${x}`).slice(0,-1)
 }
 
 

@@ -14,12 +14,14 @@ export default function RootLayout(
 ){
   return <html lang="en">
     <body>
+    <div id='bangs'>
       <header>Thisoe&apos;s Gesipan</header>
       <nav><i>
         <Link href='/gesipan'>Bulletin Board System</Link><hr/>
         <Link href='/post'>Write a New Post</Link><hr/>
         <Link href='/admin' id='admin'>BBS Admin</Link>
       </i></nav>
+    </div>
 
       <main>{children}</main>
 
