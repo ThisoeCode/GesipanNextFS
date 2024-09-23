@@ -4,6 +4,6 @@ export default function _(){
     backgroundColor:'#000',
     color:'#ccc',textAlign:'center',
   }}>
-    <br/>admin page: 404 - Not done coding :(
+    &nbsp;<br/> admin page: 404 - Not done coding :( <br/>&nbsp;
   </i>
 }

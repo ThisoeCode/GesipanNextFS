@@ -1,6 +1,6 @@
 'use server'
 import{mainDB}from"@/_lib/_insu"
-import{API,headJ,mainFormat,TGID}from"@/_lib/conf"
+import{API,headJ,mainFormat,TGID,Thisoe}from"@/_lib/conf"
 import{servTitle as t}from"@/_lib/logsys"
 import{revalidatePath}from"next/cache"
 const ermsg='[THISOE🩵DEBUG] Form submitting error: UNKNOWN ERROR!'
@@ -57,20 +57,20 @@ export default async function ACTION(
 import axios from "axios"
 
 /** 
- * Serve for `FormData`
- * @returns {boolean,null} false when 
+ * Serve for `FormData` and traditional server compoenent PUTs
  * @description Use `as Record<string, string>`
  */
-export const put = async(data:Record<string,string>)=>{
+export const put = async(data:Record<string,Thisoe>,apiRoute:string)=>{
   const SERV_ID = crypto.randomUUID()
   try{
     const res = await axios.put(
-      API+'put',
+      API+apiRoute,
       [data,SERV_ID], {headers:headJ}
     )
     if(res.status >= 200 && res.status < 300){
       return 0
     }
+    console.error(`[Thisoe] Error: PUTFAILED. (SERV_ID::${SERV_ID})`)
     return SERV_ID
   }catch(e){
     console.error(`[Thisoe] Error: AXIOSNOTPUTTING {{ ${e} }} WITH SERV_ID::`+SERV_ID)

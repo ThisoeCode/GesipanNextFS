@@ -191,13 +191,20 @@ a.tr{transition:background-color .2s ease;}
 #emptymsg a{font-size:12pt;color:var(--thisoe);cursor:pointer}
 #emptymsg a:hover{text-decoration:underline;background:transparent}
 
+#wrap-goto-post{
+  display:flex; margin:auto;
+  justify-content:flex-end;
+  max-width:800px;
+}
 #goto-post{
-  float:right;
   width:21pt; height:21pt;
   margin:7pt 3pt; padding:3pt;
   border-radius:3pt;
   cursor:pointer;
+  transition:.1s;
 }
+#goto-post:hover{transform:scale(1.1)}
+#goto-post:active{transform:scale(.97)}
 #goto-post svg{width:100%;height:100%}
 #goto-post path{transition:.2s}
 #goto-post:hover svg path{fill:var(--thisoe)}

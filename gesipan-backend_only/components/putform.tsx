@@ -28,12 +28,12 @@ export default function PostForm({}:props){
     const data = Object.fromEntries(
       (new FormData(e.currentTarget)).entries()
     ) as Record<string, string>
-    console.dir(data)
+
     if(!(data.title.trim()||data.name.trim()||data.bull.trim())){
       setPending(false)
       return void 1
     }
-    const res = await put(data)
+    const res = await put(data,'put')
 
     res ? (()=>{
           setPending(false)

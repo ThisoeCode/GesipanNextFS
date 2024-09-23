@@ -11,9 +11,6 @@ export default async function _({params:{g}}:{params:{g:string}}){
 
   const SERV_ID = crypto.randomUUID().replace(/\-/g,'').slice(7)
 
-  // TODO : DELETE ON TEST SUCCESS
-  console.dir({msg:"[TEST] GESIMUL.ODC::",gesimul:gesimul.thisoe?gesimul.docs:gesimul})
-
   // 1. Show Gesimul
   if(gesimul && gesimul.thisoe===200 && typeof gesimul.docs !='undefined'){
     return <Detail data={gesimul.docs[0]}/>

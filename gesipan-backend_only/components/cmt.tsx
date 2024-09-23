@@ -2,6 +2,7 @@
 import{cmtFormat}from"@/_lib/conf"
 import{timeDiff}from"@/_lib/timecalc"
 import React,{useState}from"react"
+import{put}from"./_use_serv"
 
 export function AddCmt(){
   const[isFocused,setFocus]=useState(false)
@@ -23,7 +24,7 @@ export function AddCmt(){
 export function Acmt({row}:{row:cmtFormat}){
   const no = row.no,
   [isPending,setPending] = useState(false),
-  [ctcData,setCtc] = useState({'ctc-cct':'','ctc-name':''}),
+  [ctcData,setCtc] = useState({ctc_cct:'',ctc_name:''}),
 
   handleChange = (e:React.ChangeEvent<
     HTMLInputElement|HTMLTextAreaElement
@@ -35,22 +36,17 @@ export function Acmt({row}:{row:cmtFormat}){
   },
 
   _put = async()=>{
+    if(!(ctcData.ctc_cct.trim()||ctcData.ctc_name.trim())){
+      return void 1
+    }
     setPending(true)
-    // const data = Object.fromEntries(
-    //   (new FormData(e.currentTarget)).entries()
-    // ) as Record<string, string>
-    // console.dir(data)
-    // if(!(data.title.trim()||data.name.trim()||data.bull.trim())){
-    //   setPending(false)
-    //   return void 1
-    // }
-    // const res = await put(data)
+    const res = await put(ctcData,'cmt/put/'+no)
 
-    // res ? (()=>{
-    //       setPending(false)
-    //       alert("Failed to post.\nPlease contact Thisoe with your visitor ID: "+res)
-    //     })()
-    // : r.push('gesipan')
+    res ? (()=>{
+          setPending(false)
+          alert("Failed to post reply.\nPlease contact Thisoe with your visitor ID: "+res)
+        })()
+    : window.location.reload()
   }
 
   return<div className="a-cmt">
@@ -65,11 +61,11 @@ export function Acmt({row}:{row:cmtFormat}){
         <br/>
       </React.Fragment>
     ))}</p>
-    <button className="reply-btn" id={`rep-${no}`}>Reply</button>
+    <button className="reply-btn" /* id={`r-${no}`} */>Reply</button>
     <i className="newcomment cmt-the-cmt" style={{ display: 'none' }}>
-      <textarea id={`ctc-content-${no}`} placeholder="Reply..." name="ctc-cct" onChange={handleChange}/>
+      <textarea /* id={`ctccct-${no}`} */ placeholder="Reply..." name="ctc_cct" onChange={handleChange}/>
       <div>
-        <input id={`ctc-name-${no}`} type="text" placeholder="Name..." name="ctc-name" onChange={handleChange}/>
+        <input /* id={`ctcname-${no}`} */ type="text" placeholder="Name..." name="ctc_name" onChange={handleChange}/>
         <button className="ctc-send-btn" onClick={_put}>Send</button>
       </div>
     </i>

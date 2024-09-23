@@ -24,16 +24,26 @@ export const TGID = ()=>{
   return result+(uu?uu[0]:`bruh_${x}`).slice(0,-1)
 }
 
+/** Delay */
+export function sleepReturn(napTimeInMS:number, callback:()=>Thisoe){
+  (new Promise((resolve)=>{setTimeout(()=>{
+    resolve(callback())
+  } ,napTimeInMS)}))
+}
 
 
-// TYPES
-import{WithoutId,Document}from"mongodb"
+// TYPES preThisoe
+import{WithId,WithoutId,Document}from"mongodb"
+
+/** A preparation of everything type. */
+export type preThisoe = 
+string|number|boolean|undefined|null|
+WithId<Document>|WithoutId<Document>|
+mainFormat|cmtFormat|Load|Error
 
 /** An everything type. */
-export type Thisoe = 
-string|number|boolean|undefined|null|
-WithoutId<Document>|WithoutId<Document>[]|
-mainFormat|Load
+export type Thisoe = preThisoe|preThisoe[]|
+Record<string,preThisoe>|(()=>preThisoe)
 
 export interface mainFormat {
 /** TGID */
