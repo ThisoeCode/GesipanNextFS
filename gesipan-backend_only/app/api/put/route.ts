@@ -2,15 +2,17 @@ import{NextRequest}from"next/server"
 import{mainDB}from"@/_lib/_insu"
 import{mainFormat,TGID}from"@/_lib/conf"
 import{NJ,servTitle as _t}from"@/_lib/logsys"
+import type{PUT}from"@/_lib/conf"
 
-const pro='PUT'
+const pro='PUT_GESIMUL'
 
 export async function PUT(req:NextRequest){_t.t1(req)
 
-  const reqJ = (await req.json())
-  const reqbody = reqJ[0]
-  const req_SERV_ID = reqJ[1]
-  const servidMsg = '\nSERV_ID::'+req_SERV_ID
+  const reqJ:PUT<{title:string,name:string,bull:string}> = (await req.json())
+  const
+  reqbody = reqJ[0],
+  req_SERV_ID = reqJ[1],
+  servidMsg = '\nSERV_ID::'+req_SERV_ID
 
   // VALIDATION
   if(!
@@ -34,10 +36,10 @@ export async function PUT(req:NextRequest){_t.t1(req)
       const res = await(await mainDB)
         .insertOne(obj)
       const id = res.insertedId.toString('hex')
-      console.log(`[${_t.t2+pro} 201] Added new docu: ObjectId[${id}]`+servidMsg)
+      console.log(`[${_t.t2+pro} 201] Added new docu: ObjectId[${id}] `+servidMsg)
       return NJ({rid:id})
     }catch(e){
-      console.error(`[${_t.t4+pro} 500] Fail to add docu!`+servidMsg)
+      console.error(`[${_t.t4+pro} 500] Fail to add docu! `+servidMsg)
       console.dir([servidMsg,reqbody])
       return NJ({rid:null},500)
     }

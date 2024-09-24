@@ -47,7 +47,7 @@ Record<string,preThisoe>|(()=>preThisoe)
 
 export interface mainFormat {
 /** TGID */
-  g?:string
+  g:string
 /** title */
   t:string
 /** author */
@@ -64,7 +64,7 @@ export interface cmtFormat {
 /** TGID */
   no:string
 /** under post id */
-  togesi?:string
+  g:string
 /** under cmt id */
   tocmt?:string
 /** author */
@@ -81,3 +81,5 @@ export type Load = {
   thisoe: 200|201|202|204|400|403|404|422|500,
   docs?: mainFormat[],
 } | {thisoe:null}
+
+export type PUT<T> = [T,string]

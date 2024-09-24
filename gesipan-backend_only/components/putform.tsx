@@ -8,7 +8,7 @@ interface props {
   
 }
 
-export default function PostForm({}:props){
+export default function PutForm({}:props){
   // prevent `Enter` key's default
   const
   e =

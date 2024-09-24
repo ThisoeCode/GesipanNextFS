@@ -5,15 +5,17 @@ import{Acmt,AddCmt}from"./cmt"
 
 export default function Detail({data}:{data:mainFormat}){
   // Time convert
-  const d = unixToDate(data.dt)
-  const dt = `${d.shortMonth} ${d.d}, ${d.yr}　${d.h}:${d.m}:${d.s}`
+  const
+  g = data.g || '0',
+  d = unixToDate(data.dt),
+  dt = `${d.shortMonth} ${d.d}, ${d.yr}　${d.h}:${d.m}:${d.s}`
 
   // Load Comments
 
   // TODO 
   let cmts
   if(1/*have comments*/)cmts=<i id="listcomments">
-    <Acmt row={{c:'oh',n:'Thisoe',dt:1726947000,no:'1'}}/>
+    <Acmt row={{g,c:'oh',n:'Thisoe',dt:1726947000,no:'1'}}/>
   </i>
 
   return <>
@@ -25,7 +27,7 @@ export default function Detail({data}:{data:mainFormat}){
     </article>
 
     <section id="comment"><hr id="chr"/>
-      <AddCmt/>
+      <AddCmt g={g}/>
       {cmts}
     </section>
   </>
