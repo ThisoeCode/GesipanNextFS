@@ -1,22 +1,32 @@
-import{mainFormat}from"@/_lib/conf"
+import{API,cmtFormat,mainFormat}from"@/_lib/conf"
 import{unixToDate}from"@/_lib/timecalc"
 import{Acmt,AddCmt}from"./cmt"
 
 
-export default function Detail({data}:{data:mainFormat}){
+export default async function Detail({data,g}:{data:mainFormat,g:string}){
   // Time convert
   const
-  g = data.g || '0',
   d = unixToDate(data.dt),
-  dt = `${d.shortMonth} ${d.d}, ${d.yr}　${d.h}:${d.m}:${d.s}`
+  dt = `${d.shortMonth} ${d.d}, ${d.yr}　${d.h}:${d.m}:${d.s}`,
 
   // Load Comments
+  cmtData:{thisoe:number,docs:cmtFormat[]} = await(
+    await fetch(API+'cmt/get?g='+g,{
+      method: 'GET',
+      cache: 'no-store',
+    })
+  ).json()
 
-  // TODO 
-  let cmts
-  if(1/*have comments*/)cmts=<i id="listcomments">
-    <Acmt row={{g,c:'oh',n:'Thisoe',dt:1726947000,no:'1'}}/>
-  </i>
+  const cmts:JSX.Element[] = []
+  const L=cmtData.docs.length
+  if(cmtData.thisoe==200&&L){
+    cmtData.docs.forEach((v,i)=>{
+      cmts.push(<Acmt
+        key={'k'+i}
+        row={{g, c:v.c, n:v.n, dt:v.dt, no:v.no}}
+      />)
+    })
+  }
 
   return <>
     <article>
@@ -28,7 +38,9 @@ export default function Detail({data}:{data:mainFormat}){
 
     <section id="comment"><hr id="chr"/>
       <AddCmt g={g}/>
-      {cmts}
+      <i id="listcomments" style={{display:L?'flex':'none'}}>
+        {cmts}
+      </i>
     </section>
   </>
 }

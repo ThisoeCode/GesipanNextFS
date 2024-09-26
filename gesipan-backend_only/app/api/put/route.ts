@@ -25,7 +25,7 @@ export async function PUT(req:NextRequest){_t.t1(req)
   // Generate OBJ
   const
   t = reqbody.title.trim()===''? 'No Title' : reqbody.title.trim(),
-  n = reqbody.name.trim()==='' ? 'Anonymous' : reqbody.name.trim(),
+  n = reqbody.name.trim()==='' ? '(Anonymous)' : reqbody.name.trim(),
   c = reqbody.bull.trim()==='' ? 'This post has no content.' : reqbody.bull,
   dt = Math.floor(Date.now()/1000),
   obj:mainFormat = { g:TGID(), t, n, c,dt, stat:1, }

@@ -9,7 +9,7 @@ export default function Arow(
     g?:string,
   }
 ){
-  return <Link className='tr' href={'/detail/'+g}>
+  return <Link title={title} href={'/detail/'+g} className='tr'>
     <p>{no}</p>
     <p>{title}</p>
     <p>{ann}</p>

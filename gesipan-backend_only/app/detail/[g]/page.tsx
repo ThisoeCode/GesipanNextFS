@@ -13,7 +13,7 @@ export default async function _({params:{g}}:{params:{g:string}}){
 
   // 1. Show Gesimul
   if(gesimul && gesimul.thisoe===200 && typeof gesimul.docs !='undefined'){
-    return <Detail data={gesimul.docs[0]}/>
+    return <Detail data={gesimul.docs[0]} g={g}/>
   }
   // 2. ERROR: Gesimul Do Not Exist
   else if(gesimul.thisoe===204){

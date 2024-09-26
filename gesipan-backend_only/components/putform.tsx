@@ -23,7 +23,9 @@ export default function PutForm({}:props){
   [isPending,setPending] = useState(false),
 
   _put = async(e:FormEvent<HTMLFormElement>)=>{
-    setPending(true)
+    if(isPending){// prevent multi-put
+      return void 1
+    }else{setPending(true)}
     e.preventDefault()
     const data = Object.fromEntries(
       (new FormData(e.currentTarget)).entries()

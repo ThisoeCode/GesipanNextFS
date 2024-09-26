@@ -23,10 +23,10 @@ export default async function insu(){
 
 // Export COLLECTIONs
 export const collection =
-  async (isReply:boolean=false)=>{
-    const dbcol = isReply?DB_CLCT+'-repl':DB_CLCT
+  async (isCmt:boolean=false)=>{
+    const dbcol = isCmt?DB_CLCT+'-repl':DB_CLCT
     const {db} = await insu()
     return db.collection(dbcol)
   }
 export const mainDB = collection()
-export const replyDB = collection(true)
+export const cmtDB = collection(true)

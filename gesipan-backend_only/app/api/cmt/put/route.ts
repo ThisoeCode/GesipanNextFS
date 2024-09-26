@@ -1,6 +1,6 @@
 import{NextRequest}from"next/server"
 import{NJ,servTitle as _t}from"@/_lib/logsys"
-import{replyDB}from"@/_lib/_insu"
+import{cmtDB}from"@/_lib/_insu"
 import{cmtFormat,TGID}from"@/_lib/conf"
 import type{PUT}from"@/_lib/conf"
 
@@ -25,16 +25,15 @@ export async function PUT(req:NextRequest){_t.t1(req)
   const
   name = cmt.cmt.cmt_name,
   ctt = cmt.cmt.cmt_ctt,
-  n = name.trim()==='' ? 'Anonymous' : name.trim(),
+  n = name.trim()==='' ? '(Anonymous)' : name.trim(),
   c = ctt.trim()==='' ? 'This post has no content.' : ctt,
   dt = Math.floor(Date.now()/1000),
   doc:cmtFormat = { no:TGID(), g:cmt.g, n,c,dt,stat:1, }
 
-  // NEXTDAY
   // Storing to DB
   try{
     try {
-      const res = await(await replyDB)
+      const res = await(await cmtDB)
         .insertOne(doc)
       const id = res.insertedId.toString('hex')
       console.log(`[${_t.t2+pro} 201] Added new docu: ObjectId[${id}] `+servidMsg)

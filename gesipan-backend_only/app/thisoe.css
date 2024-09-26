@@ -42,6 +42,7 @@ button{cursor:pointer}
 #bangs{
   position:sticky;
   top:0;
+  color:#000;
   background-color:#fffe;
 }
 header{
@@ -353,7 +354,7 @@ article h2,#dt{
   border-top:#ccc solid thin;
 }
 #comment{
-  display:flex; flex-direction:column;
+  /*display:flex;*/ flex-direction:column;
   overflow:hidden;/*<hr/> overflowing*/
 }
 #comment button{
@@ -410,8 +411,8 @@ article h2,#dt{
 #c-sub{margin-left:5pt}
 
 #listcomments{
-  margin:7pt 0;
   display:flex;flex-direction:column;
+  margin:7pt;
   gap:7pt;
 }
 .a-cmt{margin:0;flex-grow:1}

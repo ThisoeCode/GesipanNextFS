@@ -22,18 +22,21 @@ export function AddCmt({g}:{g:string}){
   },
 
   _put = async()=>{
+    if(isPending){// prevent multi-put
+      return void 1
+    }else{setPending(true)}
+
     const cmt = {cmt_ctt:cmtData,cmt_name:nameData}
     if(!(cmt.cmt_ctt.trim()||cmt.cmt_name.trim())){
       return void 1
     }
-    setPending(true)
     const res = await put({cmt,g},'cmt/put')
 
     res ? (()=>{
           setPending(false)
           alert(failmsg+res)
         })()
-    : window.location.reload()
+    : setTimeout(()=>window.location.reload(),233)
   }
 
   return<i id="newcomment" className="newcomment">

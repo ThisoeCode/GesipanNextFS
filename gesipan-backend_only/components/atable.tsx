@@ -37,7 +37,7 @@ export default async function Atable(
 
   return <i id="table">
     <i id="th" className="tr">
-      <p>Post NO.</p>
+      <p></p>
       <p>Title</p>
       <p>Announcer</p>
       <p>Date</p>

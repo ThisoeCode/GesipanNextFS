@@ -11,6 +11,8 @@ export const timeDiff = ($uts:number)=>{
     { unit:'s', s:1 },
   ]
 
+  if(seconds<5){return 'just now'}
+
   for(const{unit,s} of units){
     const x = Math.floor(seconds / s)
     if(x>=1){

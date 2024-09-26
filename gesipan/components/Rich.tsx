@@ -14,7 +14,7 @@ export default function PostForm({api}:{api:string}){
     mode:'onChange',
     // defaultValues:{
     //   title:'No Title',
-    //   sign:'Anonymous',
+    //   sign:'(Anonymous)',
     //   rich:'This post has no content.',
     // },
     resolver: zodResolver(T.form),
