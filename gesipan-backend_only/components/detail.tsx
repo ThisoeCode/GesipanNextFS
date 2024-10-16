@@ -15,15 +15,15 @@ export default async function Detail({data,g}:{data:mainFormat,g:string}){
       method: 'GET',
       cache: 'no-store',
     })
-  ).json()
+  ).json(),
 
-  const cmts:JSX.Element[] = []
-  const L=cmtData.docs.length
+  cmts:JSX.Element[] = [],
+  L=cmtData.docs.length
   if(cmtData.thisoe==200&&L){
     cmtData.docs.forEach((v,i)=>{
       cmts.push(<Acmt
         key={'k'+i}
-        row={{g, c:v.c, n:v.n, dt:v.dt, no:v.no}}
+        row={{g, c:v.c, n:v.n, dt:v.dt, no:v.no, ctc_count:v.ctc_count}}
       />)
     })
   }

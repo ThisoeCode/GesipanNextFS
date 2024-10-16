@@ -4,31 +4,32 @@ import{cmtDB}from"@/_lib/_insu"
 import{cmtFormat,TGID}from"@/_lib/conf"
 import type{PUT}from"@/_lib/conf"
 
-const pro='PUT_CMT'
+const pro='PUT_CTC'
 
-export async function PUT(req:NextRequest){_t.t1(req)
+export async function PUT(req:NextRequest,{params}:{params:{no:string}}){_t.t1(req)
   const
-  reqbody:PUT<{cmt:{cmt_ctt:string,cmt_name:string},g:string}> = (await req.json()),
-  cmt = reqbody[0],
+  reqbody:PUT<{ctc_ctt:string,ctc_name:string}> = (await req.json()),
+  ctc = reqbody[0],
   req_SERV_ID = reqbody[1],
-  servidMsg = '\nSERV_ID::'+req_SERV_ID
+  servidMsg = '\nSERV_ID::'+req_SERV_ID,
+  tocmt=params.no
 
   // VALIDATION
-  if(!
+  if(tocmt.length<9||!
     (<T extends Record<string,unknown>>(obj:T, keys:(keyof T)[])=>{
       const objKeys = Object.keys(obj) as (keyof T)[]
       return objKeys.length===keys.length && keys.every(key => objKeys.includes(key))
-    })(cmt.cmt,['cmt_ctt','cmt_name'])
+    })(ctc,['ctc_ctt','ctc_name'])
   ){return _t.t422('cmt_0')}
 
   // Generate OBJ
   const
-  name = cmt.cmt.cmt_name,
-  ctt = cmt.cmt.cmt_ctt,
+  name = ctc.ctc_name,
+  ctt = ctc.ctc_ctt,
   n = name.trim()==='' ? '(Anonymous)' : name.trim(),
   c = ctt.trim()==='' ? ' ' : ctt,
   dt = Math.floor(Date.now()/1000),
-  doc:cmtFormat = { no:TGID(), g:cmt.g, n,c,dt,stat:1,ctc_count:0, }
+  doc:cmtFormat = { no:TGID(),tocmt,n,c,dt,g:'',stat:1,ctc_count:0 }
 
   // Storing to DB
   try{
@@ -37,7 +38,11 @@ export async function PUT(req:NextRequest){_t.t1(req)
         .insertOne(doc)
       const id = res.insertedId.toString('hex')
       console.log(`[${_t.t2+pro} 201] Added new docu: ObjectId[${id}] `+servidMsg)
-      return NJ({rid:id})
+      const inc = await(await cmtDB)
+        .updateOne({no:tocmt},{$inc:{ctc_count:1}})
+      if(inc.modifiedCount===1){
+        return NJ({rid:id})
+      } return NJ({thisoe_err:"Ctc posted but reply count failed to update."},500)
     }catch(e){
       console.error(`[${_t.t4+pro} 500] Fail to add docu! `+servidMsg)
       console.dir([servidMsg,reqbody])
@@ -48,6 +53,4 @@ export async function PUT(req:NextRequest){_t.t1(req)
     console.dir([servidMsg,_])
     return _t.NJ500
   }
-
-  return NJ({a:await(req.json())},500)
 }

@@ -1,9 +1,9 @@
-const {SELF_URL}=process.env
-if(!SELF_URL){ // TS mustdo
+const selfurl=process.env.NEXT_PUBLIC_SELF_URL
+if(!selfurl){ // TS mustdo
   throw new Error('[THISOE🩵DEBUG] Missing environment variables.')
 }
 /** API path base ("http://localhost:0/api/") */
-export const API = SELF_URL+'/api/'
+export const API = selfurl+'/api/'
 export const headJ = {'Content-Type':'application/json'}
 
 /** Get user's timezone */
@@ -71,6 +71,8 @@ export interface cmtFormat {
   n:string
 /** main content */
   c:string
+/** number of comments */
+  ctc_count:number
 /** unix timestamp */
   dt:number
 /** gesimul status */
