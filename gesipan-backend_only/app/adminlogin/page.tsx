@@ -1,21 +1,24 @@
-import{login}from'@/_lib/admin'
+import{getSession,login}from'@/_lib/admin'
 import{redirect}from'next/navigation'
 
 export default async function _({searchParams}:{searchParams?:{err?:string}}){
-  const e=searchParams?.err
+  const
+    session = await getSession(),
+    err=(_:string)=>_===searchParams?.err
+  session && redirect('/admin')
   return <i id='login'>
     <p>{
-      e==='exp' ? 'Admin login expired.' :
-      e==='badpw' && 'Wrong password.'
-    }</p>
+      err('badpw') ? 'Wrong password.' :
+      err('exp') ? 'Admin login expired.' :
+      err('admin') ? 'Admin login required.' :
+    ''}</p>
   <form action={async(formData)=>{
     'use server'
     if(formData.get('admin')===process.env.ADMIN_PW){
       await login('admin')
       redirect('/admin')
     }else{
-      console.error('BADPWWWWWWWWWWWWWWWWWWWWWWWWWWWWW')
-      redirect('/admin?err=badpw')
+      redirect('/adminlogin?err=badpw')
     }
   }}>
     <label>Admin password:</label>
