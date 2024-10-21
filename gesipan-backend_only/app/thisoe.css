@@ -479,3 +479,11 @@ article h2,#dt{
   display:flex;flex-direction:column;
   flex-grow:1;
 }
+
+
+
+/* ADMIN */
+#login{display:flex;flex-direction:column;gap:7px}
+#login>*{margin:auto}
+#login>p{color:tomato}
+#login>form{display:flex;gap:3pt}
