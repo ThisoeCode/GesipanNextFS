@@ -1,4 +1,4 @@
-import AdminAuthProvider from "./AdminAuthProvider"
+import AuthProv from "@/components/AdminAuthProvider"
 export default async function RootLayout({children}:Readonly<{children:React.ReactNode}>){
-  return <AdminAuthProvider>{children}</AdminAuthProvider>
+  return <AuthProv>{children}</AuthProv>
 }

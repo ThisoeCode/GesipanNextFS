@@ -8,7 +8,7 @@ const pro='PUT_CTC'
 
 export async function PUT(req:NextRequest,{params}:{params:{no:string}}){_t.t1(req)
   const
-  reqbody:PUT<{ctc_ctt:string,ctc_name:string}> = (await req.json()),
+  reqbody:PUT<{ctc_ctt:string,ctc_name:string,g:string}> = (await req.json()),
   ctc = reqbody[0],
   req_SERV_ID = reqbody[1],
   servidMsg = '\nSERV_ID::'+req_SERV_ID,
@@ -24,12 +24,13 @@ export async function PUT(req:NextRequest,{params}:{params:{no:string}}){_t.t1(r
 
   // Generate OBJ
   const
+  g = ctc.g,
   name = ctc.ctc_name,
   ctt = ctc.ctc_ctt,
   n = name.trim()==='' ? '(Anonymous)' : name.trim(),
   c = ctt.trim()==='' ? ' ' : ctt,
   dt = Math.floor(Date.now()/1000),
-  doc:cmtFormat = { no:TGID(),tocmt,n,c,dt,g:'',stat:1,ctc_count:0 }
+  doc:cmtFormat = { no:TGID(),tocmt,n,c,dt,g,stat:1,ctc_count:0 }
 
   // Storing to DB
   try{

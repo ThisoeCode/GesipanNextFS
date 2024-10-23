@@ -80,9 +80,9 @@ export function Acmt({row}:{row:cmtFormat}){
   },
 
   _put = async()=>{
-    const ctcData = {ctc_ctt:cttData,ctc_name:nameData}
+    const ctcData = {ctc_ctt:cttData,ctc_name:nameData,g:row.g}
     if(!(ctcData.ctc_ctt.trim()||ctcData.ctc_name.trim())){
-      return void 1
+      return null
     }
     setPending(true)
     const res = await put(ctcData,'cmt/put/'+no)
