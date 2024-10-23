@@ -2,7 +2,7 @@ import Arow from"@/components/arow"
 import{API,Load}from"@/_lib/conf"
 
 export default async function Atable(
-  {sp}: {sp:{posted?:string}}
+  {sp,admin}: {sp?:{posted?:string},admin?:boolean}
 ){
   const list:Promise<JSX.Element[]> = (new Promise((resolve)=>{setTimeout( async()=>{
     const rows:JSX.Element[] = [],
@@ -23,6 +23,7 @@ export default async function Atable(
             ann={v.n}
             date={v.dt}
             g={v.g}
+            admin={admin}
           />
         )
         L--
@@ -33,7 +34,7 @@ export default async function Atable(
       throw new Error('[THISOE ERROR] no.0081200')
     }
     resolve(rows)
-  } ,sp.posted?900:1)}))
+  }, (sp?.posted??0)?900:1 )}))
 
   return <i id="table">
     <i id="th" className="tr">

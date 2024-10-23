@@ -28,7 +28,7 @@ export async function PUT(req:NextRequest){_t.t1(req)
   n = name.trim()==='' ? '(Anonymous)' : name.trim(),
   c = ctt.trim()==='' ? ' ' : ctt,
   dt = Math.floor(Date.now()/1000),
-  doc:cmtFormat = { no:TGID(), g:cmt.g, n,c,dt,stat:1,ctc_count:0, }
+  doc:cmtFormat = {no:TGID(), g:cmt.g, n,c,dt,tocmt:'',stat:1,ctc_count:0}
 
   // Storing to DB
   try{

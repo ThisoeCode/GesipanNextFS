@@ -19,7 +19,7 @@ export async function PUT(req:NextRequest,{params}:{params:{no:string}}){_t.t1(r
     (<T extends Record<string,unknown>>(obj:T, keys:(keyof T)[])=>{
       const objKeys = Object.keys(obj) as (keyof T)[]
       return objKeys.length===keys.length && keys.every(key => objKeys.includes(key))
-    })(ctc,['ctc_ctt','ctc_name'])
+    })(ctc,['ctc_ctt','ctc_name','g'])
   ){return _t.t422('cmt_0')}
 
   // Generate OBJ
@@ -28,10 +28,10 @@ export async function PUT(req:NextRequest,{params}:{params:{no:string}}){_t.t1(r
   name = ctc.ctc_name,
   ctt = ctc.ctc_ctt,
   n = name.trim()==='' ? '(Anonymous)' : name.trim(),
-  c = ctt.trim()==='' ? ' ' : ctt,
+  c = ctt.trim()==='' ? '(No content)' : ctt,
   dt = Math.floor(Date.now()/1000),
   doc:cmtFormat = { no:TGID(),tocmt,n,c,dt,g,stat:1,ctc_count:0 }
-
+console.log("-------------------------",g)
   // Storing to DB
   try{
     try {

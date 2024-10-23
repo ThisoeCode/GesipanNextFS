@@ -1,15 +1,19 @@
 import Link from"next/link"
-import{TIMEZONE}from"@/_lib/conf"
+import{API,TIMEZONE}from"@/_lib/conf"
 export default function Arow(
-  {no,title,ann,date,g='0',}:{
+  {no,title,ann,date,g='0',admin=false}:{
     no:number,
     title:string,
     ann:string,
     date:number,
     g?:string,
+    admin?:boolean,
   }
 ){
-  return <Link title={title} href={'/detail/'+g} className='tr'>
+  return<><Link
+  title={title}
+  href={(admin?'/admin':'')+'/detail/'+g}
+  className={'tr'+(admin?' admin':'')}>
     <p>{no}</p>
     <p>{title}</p>
     <p>{ann}</p>
@@ -25,4 +29,18 @@ export default function Arow(
       })()
     }</p>
   </Link>
+  {admin&&<DelRowBtn g=''/>}
+  </>
+}
+
+function DelRowBtn({g}:{g:string}){
+'use client'
+  const del=async()=>{
+    await(
+      await fetch(API+'admin/del/'+g)
+    ).json()
+      ? window.location.reload()
+      : alert('Failed to delete:\nPost NO. '+g)
+  }
+  return<button className="del-row" onClick={del}>🚮</button>
 }
