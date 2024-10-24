@@ -1,5 +1,7 @@
 import Link from"next/link"
-import{API,TIMEZONE}from"@/_lib/conf"
+import{TIMEZONE}from"@/_lib/conf"
+import{DelRowBtn}from"./_use_client"
+
 export default function Arow(
   {no,title,ann,date,g='0',admin=false}:{
     no:number,
@@ -10,7 +12,7 @@ export default function Arow(
     admin?:boolean,
   }
 ){
-  return<><Link
+  return<AdminRow admin={admin} g={g}><Link
   title={title}
   href={(admin?'/admin':'')+'/detail/'+g}
   className={'tr'+(admin?' admin':'')}>
@@ -28,19 +30,16 @@ export default function Arow(
         })
       })()
     }</p>
-  </Link>
-  {admin&&<DelRowBtn g=''/>}
-  </>
+  </Link></AdminRow>
 }
 
-function DelRowBtn({g}:{g:string}){
-'use client'
-  const del=async()=>{
-    await(
-      await fetch(API+'admin/del/'+g)
-    ).json()
-      ? window.location.reload()
-      : alert('Failed to delete:\nPost NO. '+g)
-  }
-  return<button className="del-row" onClick={del}>🚮</button>
+function AdminRow({children,g,admin}:
+  Readonly<{g:string,admin:boolean,children:React.ReactNode}>
+){
+  if(admin)
+    return <i className="adminwrap">
+      {children}
+      {admin&&<DelRowBtn g={g}/>}
+    </i>
+  return<>{children}</>
 }

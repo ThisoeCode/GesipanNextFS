@@ -3,7 +3,14 @@ import{unixToDate}from"@/_lib/timecalc"
 import{Acmt,AddCmt}from"./cmt"
 
 
-export default async function Detail({data,g}:{data:mainFormat,g:string}){
+export default async function Detail({g,data,admin=false}:{
+  g:string,
+  data:mainFormat,
+  admin?:boolean,
+}){
+if(admin){
+  
+}
   // Time convert
   const
   d = unixToDate(data.dt),

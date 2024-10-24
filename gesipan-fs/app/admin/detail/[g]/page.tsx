@@ -7,16 +7,19 @@ export default async function _({params:{g}}:{params:{g:string}}){
     await fetch(API+'load/'+g,{
       method: 'GET',
       cache: 'no-store',
-    })).json()
+    })).json(),
+    elog=(_:string)=>{
+      console.error('[THISOE_ADMIN_ERR] '+_)
+      r('/admin?err='+_)
+    }
     // 1. Show Gesimul
     if(gesimul && gesimul.thisoe===200 && gesimul.docs){
-      // TODO
-      return <i>{gesimul.docs[0].t}</i>
+      return<Detail admin g={g} data={gesimul.docs[0]}/>
     }
     // 2. ERROR: Gesimul Do Not Exist
-    else if(gesimul.thisoe===204) r('/admin')
+    else if(gesimul.thisoe===204) elog('taed2')
     // 3. ERROR: MongoDB responses a falsy content `gesimul`
-    else if(!gesimul) r('/admin')
+    else if(!gesimul) elog('taed3')
     // 4. ERROR: Non of above
-    else r('/admin')
+    else elog('tae500')
 }

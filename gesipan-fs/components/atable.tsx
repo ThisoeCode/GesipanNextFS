@@ -2,7 +2,7 @@ import Arow from"@/components/arow"
 import{API,Load}from"@/_lib/conf"
 
 export default async function Atable(
-  {sp,admin}: {sp?:{posted?:string},admin?:boolean}
+  {sp,admin=false}: {sp?:{posted?:string},admin?:boolean}
 ){
   const list:Promise<JSX.Element[]> = (new Promise((resolve)=>{setTimeout( async()=>{
     const rows:JSX.Element[] = [],
@@ -37,12 +37,19 @@ export default async function Atable(
   }, (sp?.posted??0)?900:1 )}))
 
   return <i id="table">
-    <i id="th" className="tr">
-      <p></p>
-      <p>Title</p>
-      <p>Announcer</p>
-      <p>Date</p>
-    </i>
+    <Th admin={admin}/>
     {list}
   </i>
+}
+
+function Th({admin}:{admin:boolean}){
+  const th = <i id="th" className="tr">
+    <p></p>
+    <p>Title</p>
+    <p>Announcer</p>
+    <p>Date</p>
+  </i>
+  if(admin)
+    return<i className="adminwrap">{th}<i id="del-th"></i></i>
+  return th
 }
