@@ -66,7 +66,7 @@ export function AddCmt({g}:{g:string}){
 
 /** 2. A comment */
 
-export function Acmt({row}:{row:cmtFormat}){
+export function Acmt({row,admin}:{row:cmtFormat,admin:boolean}){
   const no = row.no,
   [isPending,setPending]=useState(false),
   [cttData,setCtt]=useState(''),
@@ -104,6 +104,7 @@ export function Acmt({row}:{row:cmtFormat}){
 
   return<div className="a-cmt">
     <hr className="rep-hr"/>
+    {admin&&<button className="admin">Delete Reply</button>}
     <h5>
       <span>{row.n}</span>
       <span>{timeDiff(row.dt)}</span>
@@ -114,11 +115,13 @@ export function Acmt({row}:{row:cmtFormat}){
         <br/>
       </React.Fragment>
     ))}</p>
+    {admin||
     <button
       className="reply-btn"
       style={isReplying?{display:'none'}:{}}
       onClick={openReply}
     >Reply</button>
+    }
     <i className="newcomment cmt-the-cmt" style={{display:isReplying?'block':'none'}}>
       <textarea ref={replyRef}
         placeholder="Reply..."
@@ -136,14 +139,14 @@ export function Acmt({row}:{row:cmtFormat}){
         <button onClick={_put} disabled={isPending}>Send</button>
       </div>
     </i>
-    <ShowCtc count={row.ctc_count} under={no}/>
+    <ShowCtc count={row.ctc_count} under={no} admin={admin}/>
   </div>
 }
 
 
 
 /** 3. Show more replies */
-function ShowCtc({count,under}:{count:number,under:string}){
+function ShowCtc({count,under,admin}:{count:number,under:string,admin:boolean}){
   const
     init_store:{thisoe:number,docs:cmtFormat[]}={thisoe:0,docs:[{no:'0',g:'',n:'',c:'',ctc_count:0,dt:0}]},
     [show,setCtt]=useState(false),
@@ -179,18 +182,20 @@ function ShowCtc({count,under}:{count:number,under:string}){
       style={{display:show?'block':'none'}}
       onClick={toggle(false)}
     ><span className="arr-up"/>Hide</button>
-    <Actc display={display} data={data.docs}/>
+    <Actc display={display} data={data.docs} admin={admin}/>
   </>
 }
 
 
 
 /** 4. A reply */
-function Actc({display,data}:{display:string,data:cmtFormat[]}){
+function Actc({display,data,admin}:
+  {display:string,data:cmtFormat[],admin:boolean}
+){
   const
   rows:JSX.Element[] = []
   data.forEach((v,i)=>{
-    rows.push(<Acmt
+    rows.push(<Acmt admin={admin}
       key={'k'+i}
       row={{g:'', c:v.c, n:v.n, dt:v.dt, no:v.no, ctc_count:v.ctc_count}}
     />)

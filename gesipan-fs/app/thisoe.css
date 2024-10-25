@@ -127,13 +127,6 @@ footer a{
 
 
 
-@media only screen and (max-width: 539px) {
-  main{margin:0 3pt 81px}
-  #admin,nav i hr:nth-last-of-type(1){display:none}
-}
-
-
-
 
 
 /*******   GESIPAN   *******/
@@ -209,34 +202,6 @@ a.tr{transition:background-color .2s ease;}
 #goto-post svg{width:100%;height:100%}
 #goto-post path{transition:.2s}
 #goto-post:hover svg path{fill:var(--thisoe)}
-
-@media only screen and (max-width: 539px) {
-  #th{display:none}
-  .tr:nth-child(odd){background:#f7f7f7}
-  .tr:nth-child(even){background:#eee}
-  #table a{display:block;position:relative}
-  #table a p:nth-child(1){display:none}
-  #table a p:nth-child(2){
-    font-weight:bold;
-    width:calc(100% - 36pt);
-    padding:12pt 18pt 3pt;
-  }
-  #table a p:nth-child(3){
-    width:50%;
-    padding:0; margin-left:18pt;
-    color:#555;
-    text-align:start;
-  }
-  #table a p:nth-child(4){
-    width:39%;
-    padding:0; margin-right:18pt;
-    position:relative;
-    top:-12pt;
-    float:right;
-    text-align:end;
-    color:#555;
-  }
-}
 
 
 
@@ -487,3 +452,72 @@ article h2,#dt{
 #login>*{margin:auto}
 #login>p{color:tomato}
 #login>form{display:flex;gap:3pt}
+
+/** adminwrap */
+.aw{display:flex;flex:row}
+.aw>:nth-child(1){width:90%}
+.aw>:nth-child(2){width:27pt;text-align:center}
+.aw:nth-child(even)>*{background:#fff}
+.aw:nth-child(odd)>button{background:#f1f1f1}
+#del-th{background:#ccc;display:flex}
+#del-th>*{margin:auto;color:darkred}
+.aw button{transition:.2s}
+.aw button:hover{background:pink}
+
+.tr{}
+
+article>button{
+  float:right;
+  margin:9pt 7pt 0; padding:3pt 9pt;
+  font-size:12pt;
+  border:gold solid 2pt;
+  border-radius:3pt;
+  transition:.2s;
+}article>button:hover{background:tomato;border-color:brown}
+
+a-cmt>button.admin{
+  float:right;
+  margin:9pt 7pt 0; padding:3pt 9pt;
+  font-size:12pt;
+  border:gold solid 2pt;
+  border-radius:3pt;
+  transition:.2s;
+}article>button:hover{background:tomato;border-color:brown}
+
+
+/*******   PHONE   *******/
+/*******   PHONE   *******/
+/*******   PHONE   *******/
+
+@media only screen and (max-width: 539px) {
+  main{margin:0 9pt 81px;width:calc(100% - 18pt)}
+  #admin,nav i hr:nth-last-of-type(1){display:none}
+
+  #th{display:none}
+  .tr:nth-child(odd){background:#f7f7f7}
+  .tr:nth-child(even){background:#eee}
+  #table a{display:block;position:relative}
+  #table a p:nth-child(1){display:none}
+  #table a p:nth-child(2){
+    font-weight:bold;
+    width:calc(100% - 36pt);
+    padding:12pt 18pt 3pt;
+  }
+  #table a p:nth-child(3){
+    width:50%;
+    padding:0; margin-left:18pt;
+    color:#555;
+    text-align:start;
+  }
+  #table a p:nth-child(4){
+    width:39%;
+    padding:0; margin-right:18pt;
+    position:relative;
+    top:-12pt;
+    float:right;
+    text-align:end;
+    color:#555;
+  }
+
+  .aw>:nth-child(2){display:none}
+}

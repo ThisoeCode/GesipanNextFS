@@ -1,7 +1,7 @@
 'use client'
 import{API}from"@/_lib/conf"
 
-export function DelRowBtn({g}:{g:string}){
+export function DelRowBtn({g,txt}:{g:string,txt:string}){
   'use client'
     const del=async()=>{
       await(
@@ -10,5 +10,5 @@ export function DelRowBtn({g}:{g:string}){
         ? window.location.reload()
         : alert('Failed to delete:\nPost NO. '+g)
     }
-    return<button className="del-row" onClick={del}>🚮</button>
-  }
+  return<button onClick={del}>{txt}</button>
+}

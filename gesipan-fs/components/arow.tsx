@@ -15,7 +15,7 @@ export default function Arow(
   return<AdminRow admin={admin} g={g}><Link
   title={title}
   href={(admin?'/admin':'')+'/detail/'+g}
-  className={'tr'+(admin?' admin':'')}>
+  className='tr'>
     <p>{no}</p>
     <p>{title}</p>
     <p>{ann}</p>
@@ -37,9 +37,9 @@ function AdminRow({children,g,admin}:
   Readonly<{g:string,admin:boolean,children:React.ReactNode}>
 ){
   if(admin)
-    return <i className="adminwrap">
+    return <i className="aw">
       {children}
-      {admin&&<DelRowBtn g={g}/>}
+      {admin&&<DelRowBtn g={g} txt="🚮"/>}
     </i>
   return<>{children}</>
 }

@@ -50,6 +50,6 @@ function Th({admin}:{admin:boolean}){
     <p>Date</p>
   </i>
   if(admin)
-    return<i className="adminwrap">{th}<i id="del-th"></i></i>
+    return<i className="aw">{th}<i id="del-th"><p>DEL</p></i></i>
   return th
 }
