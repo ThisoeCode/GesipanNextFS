@@ -27,7 +27,7 @@ export default function RootLayout(
 
       <footer>
         <p>
-          <a href="https://thisoe.dev/">Thisoe.dev</a> | <a href="https://thisoe.dev/project/">Showcase</a>
+          <a href="https://thisoe.dev/" target="_blank">Thisoe.dev</a> | <a href="https://thisoe.dev/project/">Showcase</a>
           <br/>
           © 2024 Thisoe
         </p>

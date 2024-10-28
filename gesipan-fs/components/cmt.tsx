@@ -1,8 +1,9 @@
 'use client'
 import{API,cmtFormat}from"@/_lib/conf"
 import{timeDiff}from"@/_lib/timecalc"
-import React,{useState,ChangeEvent as e,useRef,useEffect}from"react"
+import React,{useState,ChangeEvent as e,useRef,useEffect, Fragment}from"react"
 import{put}from"./_use_serv"
+import{DelCmt}from"./_use_client"
 
 type CTT = HTMLTextAreaElement
 type INPUT = HTMLInputElement
@@ -104,7 +105,7 @@ export function Acmt({row,admin}:{row:cmtFormat,admin:boolean}){
 
   return<div className="a-cmt">
     <hr className="rep-hr"/>
-    {admin&&<button className="admin">Delete Reply</button>}
+    {admin&&<DelCmt no={no}>Delete Reply</DelCmt>}
     <h5>
       <span>{row.n}</span>
       <span>{timeDiff(row.dt)}</span>
@@ -115,13 +116,12 @@ export function Acmt({row,admin}:{row:cmtFormat,admin:boolean}){
         <br/>
       </React.Fragment>
     ))}</p>
-    {admin||
+    {admin||<>
     <button
       className="reply-btn"
       style={isReplying?{display:'none'}:{}}
       onClick={openReply}
     >Reply</button>
-    }
     <i className="newcomment cmt-the-cmt" style={{display:isReplying?'block':'none'}}>
       <textarea ref={replyRef}
         placeholder="Reply..."
@@ -139,6 +139,7 @@ export function Acmt({row,admin}:{row:cmtFormat,admin:boolean}){
         <button onClick={_put} disabled={isPending}>Send</button>
       </div>
     </i>
+    </>}
     <ShowCtc count={row.ctc_count} under={no} admin={admin}/>
   </div>
 }
@@ -152,11 +153,13 @@ function ShowCtc({count,under,admin}:{count:number,under:string,admin:boolean}){
     [show,setCtt]=useState(false),
     [display,dispCtc]=useState('none'),
     [data,store]=useState(init_store),
+    [isPending,pend]=useState(false),
 
+    /** @param _ Is `show` btn? */
     toggle=(_:boolean)=>{return async()=>{
       setCtt(_)
       if(data.docs[0].dt===0){ // Load CTCs
-        console.log('loaded---')
+        pend(true)
         const _get = await(
           await fetch(API+`cmt/get/${under}/`,{
             method: 'GET',
@@ -165,9 +168,17 @@ function ShowCtc({count,under,admin}:{count:number,under:string,admin:boolean}){
         ).json()
         store(_get)
         dispCtc('flex')
+        pend(false)
       }
       else dispCtc(_?'flex':'none')
-    }}
+    }},
+
+    showPend=()=>{
+      if(isPending){return'Loading...'}
+      return<>
+        <span className="arr-down"/>Show {count} repl{count===1?'y':'ies'}
+      </>
+    }
 
 
   if(count===0){return <></>}
@@ -176,7 +187,8 @@ function ShowCtc({count,under,admin}:{count:number,under:string,admin:boolean}){
       className="show-ctc-btn"
       style={{display:show?'none':'block'}}
       onClick={toggle(true)}
-    ><span className="arr-down"/>Show {count} repl{count===1?'y':'ies'}</button>
+      disabled={isPending}
+    >{showPend()}</button>
     <button
       className="hide-ctc-btn"
       style={{display:show?'block':'none'}}

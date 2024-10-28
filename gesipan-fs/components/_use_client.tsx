@@ -12,3 +12,15 @@ export function DelRowBtn({g,txt}:{g:string,txt:string}){
     }
   return<button onClick={del}>{txt}</button>
 }
+
+export function DelCmt({no,children}:{no:string,children:React.ReactNode}){
+  'use client'
+    const del=async()=>{
+      await(
+        await fetch(API+`admin/del/${no}?cmt=1`)
+      ).json()
+        ? window.location.reload()
+        : alert('Failed to delete:\nReply NO. '+no)
+    }
+  return<button className="delcmt" onClick={del}>{children}</button>
+}
