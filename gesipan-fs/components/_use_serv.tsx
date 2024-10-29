@@ -5,6 +5,8 @@ import{servTitle as t}from"@/_lib/logsys"
 import{revalidatePath}from"next/cache"
 const ermsg='[THISOE🩵DEBUG] Form submitting error: UNKNOWN ERROR!'
 
+// 1. (RC thingy, abandoned)
+
 /**
  * Serve for `useActionState`
  * @description DISABLED BEFORE `React 19 RC` CAME OUT (Thisoe 2024/09/19)
@@ -54,6 +56,8 @@ export default async function ACTION(
 
 
 
+// 2. PUT
+
 import axios from "axios"
 
 /** 
@@ -77,3 +81,17 @@ export const put = async(data:Record<string,Thisoe>,apiRoute:string)=>{
     return SERV_ID
   }
 }
+
+
+
+// 3. Check admin session expiration
+
+import{getSession}from"@/_lib/admin"
+import{redirect as r}from'next/navigation'
+
+/** isAdminExp */
+export const iAE = async()=>{
+  return !(await getSession())
+}
+
+export async function redirect(_:string){r(_)}

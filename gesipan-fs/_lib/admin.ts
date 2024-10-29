@@ -3,7 +3,7 @@ import{SignJWT,jwtVerify,JWTPayload}from"jose"
 import{TGID}from"./conf"
 
 const // config
-  expire_hrs = 3,
+  expire_hrs = 9,
 
   {ADMIN_KEY}=process.env
   if(!ADMIN_KEY){ // TS mustdo
@@ -19,7 +19,7 @@ async function encrypt(payload:JWTPayload){
   return await new SignJWT(payload)
     .setProtectedHeader({alg})
     .setIssuedAt()
-    .setExpirationTime(expire_hrs+" hrs from now")
+    .setExpirationTime(expire_hrs+" sec from now")
     .sign(key)
 }
 

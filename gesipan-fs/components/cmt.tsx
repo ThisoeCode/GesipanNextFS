@@ -157,7 +157,6 @@ function ShowCtc({count,under,admin}:{count:number,under:string,admin:boolean}){
 
     /** @param _ Is `show` btn? */
     toggle=(_:boolean)=>{return async()=>{
-      setCtt(_)
       if(data.docs[0].dt===0){ // Load CTCs
         pend(true)
         const _get = await(
@@ -171,6 +170,7 @@ function ShowCtc({count,under,admin}:{count:number,under:string,admin:boolean}){
         pend(false)
       }
       else dispCtc(_?'flex':'none')
+      setCtt(_)
     }},
 
     showPend=()=>{
