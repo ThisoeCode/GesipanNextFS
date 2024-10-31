@@ -1,34 +1,34 @@
 'use client'
 import{API}from"@/_lib/conf"
+import type{DEL}from"@/_lib/conf"
 import{iAE,redirect as r}from"./_use_serv"
 
+const
+  delSuc=(descCount:number|string)=>`Deleted successfully.\n(Also deleted ${descCount} related replies.)`
+
+
+// 1. (admin) delete gesimul/reply button
 async function checkExp(){
   if(await iAE()){
     r('/adminlogin?err=exp')
   }
 }
-
-export function DelRowBtn({g,txt}:{g:string,txt:string}){
+export function DelRowBtn({g,txt,cmt=false}:{
+  g:string,
+  txt:string,
+  cmt?:boolean,
+}){
   const del=async()=>{
     await checkExp()
-    await(
-      await fetch(API+'admin/del/'+g)
+    const delRes:DEL = await(
+      await fetch(API+'admin/del/'+g+(cmt&&'?cmt=1'))
     ).json()
-      ? window.location.reload()
-      : alert('Failed to delete:\nPost NO. '+g)
+    delRes?.del
+      ? (()=>{
+        alert(delSuc(delRes.delCmtCount))
+        setTimeout(()=>{r('/admin')}, 99)
+      })()
+      : alert('Failed to delete:\n'+(cmt?'Reply':'Post')+' NO. '+g)
   }
-  return<button onClick={del}>{txt}</button>
-}
-
-export function DelCmt({no,children}:{no:string,children:React.ReactNode}){
-  
-  const del=async()=>{
-    await checkExp()
-    await(
-      await fetch(API+`admin/del/${no}?cmt=1`)
-    ).json()
-      ? window.location.reload()
-      : alert('Failed to delete:\nReply NO. '+no)
-  }
-  return<button className="delcmt" onClick={del}>{children}</button>
+  return<button className={cmt?'delcmt':''} onClick={del}>{txt}</button>
 }

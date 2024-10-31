@@ -1,7 +1,7 @@
-export function NoCtt(){
+export function NoCtt({admin=false}:{admin?:boolean}){
   return <p id="unexist">
     This post does not exist or was deleted.<br/>
-    <a href="/gesipan">Go Back</a>
+    <a href={admin?"/admin":"/gesipan"}>Go Back</a>
   </p>
 }
 

@@ -459,10 +459,12 @@ article h2,#dt{
 .aw>:nth-child(2){width:27pt;text-align:center}
 .aw:nth-child(even)>*{background:#fff}
 .aw:nth-child(odd)>button{background:#f1f1f1}
-#del-th{background:#ccc;display:flex}
+#del-th{display:flex}
 #del-th>*{margin:auto;color:darkred}
 .aw>button{border-left:#999 solid thin;transition:.2s}
 .aw>button:hover{background:pink}
+
+.aw>#th,#del-th{background:#ace}
 
 .tr{}
 

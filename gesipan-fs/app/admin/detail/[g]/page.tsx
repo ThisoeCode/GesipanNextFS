@@ -1,6 +1,7 @@
 import{API,Load}from"@/_lib/conf"
 import Detail from "@/components/detail"
 import{redirect as r}from'next/navigation'
+import{NoCtt}from'@/components/noctt'
 
 export default async function _({params:{g}}:{params:{g:string}}){
   const gesimul:Load = await(
@@ -17,7 +18,7 @@ export default async function _({params:{g}}:{params:{g:string}}){
       return<Detail admin g={g} data={gesimul.docs[0]}/>
     }
     // 2. ERROR: Gesimul Do Not Exist
-    else if(gesimul.thisoe===204) elog('taed2')
+    else if(gesimul.thisoe===204){return <NoCtt admin/>}
     // 3. ERROR: MongoDB responses a falsy content `gesimul`
     else if(!gesimul) elog('taed3')
     // 4. ERROR: Non of above

@@ -85,3 +85,5 @@ export type Load = {
 } | {thisoe:null}
 
 export type PUT<T> = [T,string]
+
+export type DEL = {del:1, delCmtCount:number}

@@ -3,7 +3,7 @@ import{API,cmtFormat}from"@/_lib/conf"
 import{timeDiff}from"@/_lib/timecalc"
 import React,{useState,ChangeEvent as e,useRef,useEffect, Fragment}from"react"
 import{put}from"./_use_serv"
-import{DelCmt}from"./_use_client"
+import{DelRowBtn}from"./_use_client"
 
 type CTT = HTMLTextAreaElement
 type INPUT = HTMLInputElement
@@ -105,7 +105,7 @@ export function Acmt({row,admin}:{row:cmtFormat,admin:boolean}){
 
   return<div className="a-cmt">
     <hr className="rep-hr"/>
-    {admin&&<DelCmt no={no}>Delete Reply</DelCmt>}
+    {admin&&<DelRowBtn cmt g={no} txt="Delete Reply"/>}
     <h5>
       <span>{row.n}</span>
       <span>{timeDiff(row.dt)}</span>
