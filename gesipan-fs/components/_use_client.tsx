@@ -20,14 +20,19 @@ export function DelRowBtn({g,txt,cmt=false}:{
 }){
   const del=async()=>{
     await checkExp()
-    const delRes:DEL = await(
-      await fetch(API+'admin/del/'+g+(cmt&&'?cmt=1'))
-    ).json()
+    const
+      res=await fetch(API+'admin/del/'+g+(cmt?'?cmt=1':'')),
+      delRes:DEL = await res.json()
+    if(!(res.status<299)){
+      return alert('API ERROR: '+res.status)
+    }
     delRes?.del
       ? (()=>{
-        alert(delSuc(delRes.delCmtCount))
-        setTimeout(()=>{r('/admin')}, 99)
-      })()
+          alert(delSuc(delRes.delCmtCount))
+          cmt
+            ? window.location.reload()
+            : setTimeout(()=>{r('/admin')}, 99)
+        })()
       : alert('Failed to delete:\n'+(cmt?'Reply':'Post')+' NO. '+g)
   }
   return<button className={cmt?'delcmt':''} onClick={del}>{txt}</button>
