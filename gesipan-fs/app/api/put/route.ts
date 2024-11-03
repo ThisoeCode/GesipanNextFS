@@ -8,11 +8,11 @@ const pro='PUT_GESIMUL'
 
 export async function PUT(req:NextRequest){_t.t1(req)
 
-  const reqJ:PUT<{title:string,name:string,bull:string}> = (await req.json())
   const
-  reqbody = reqJ[0],
-  req_SERV_ID = reqJ[1],
-  servidMsg = '\nSERV_ID::'+req_SERV_ID
+    reqJ:PUT<{title:string,name:string,bull:string}> = (await req.json()),
+    reqbody = reqJ[0],
+    req_SERV_ID = reqJ[1],
+    servidMsg = '\nSERV_ID::'+req_SERV_ID
 
   // VALIDATION
   if(!
@@ -24,11 +24,11 @@ export async function PUT(req:NextRequest){_t.t1(req)
 
   // Generate OBJ
   const
-  t = reqbody.title.trim()===''? 'No Title' : reqbody.title.trim(),
-  n = reqbody.name.trim()==='' ? '(Anonymous)' : reqbody.name.trim(),
-  c = reqbody.bull.trim()==='' ? 'This post has no content.' : reqbody.bull,
-  dt = Math.floor(Date.now()/1000),
-  obj:mainFormat = { g:TGID(), t, n, c,dt, stat:1, }
+    t = reqbody.title.trim()===''? 'No Title' : reqbody.title.trim(),
+    n = reqbody.name.trim()==='' ? '(Anonymous)' : reqbody.name.trim(),
+    c = reqbody.bull.trim()==='' ? 'This post has no content.' : reqbody.bull,
+    dt = Math.floor(Date.now()/1000),
+    obj:mainFormat = { g:TGID(), t, n, c,dt, stat:1, }
 
   // Storing to DB
   try{

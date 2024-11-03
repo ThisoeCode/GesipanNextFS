@@ -1,6 +1,6 @@
 import{NextRequest}from"next/server"
 import{NJ,servTitle as _t}from"@/_lib/logsys"
-import{cmtDB}from"@/_lib/_insu"
+import{cmtDB,mainDB}from"@/_lib/_insu"
 import{cmtFormat,TGID}from"@/_lib/conf"
 import type{PUT}from"@/_lib/conf"
 
@@ -21,6 +21,10 @@ export async function PUT(req:NextRequest,{params}:{params:{no:string}}){_t.t1(r
       return objKeys.length===keys.length && keys.every(key => objKeys.includes(key))
     })(ctc,['ctc_ctt','ctc_name','g'])
   ){return _t.t422('cmt_0')}
+
+  // Check if post exists
+  if(await(await mainDB).findOne({g:ctc.g})===null)
+    return NJ({thisoeERR:'cmt_PostNotExist'},422)
 
   // Generate OBJ
   const

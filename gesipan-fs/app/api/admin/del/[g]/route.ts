@@ -45,7 +45,7 @@ if(cmt==='1'){
     delCmtDesc = async(no:string)=>{
     // minus
       const self = await(await cmtDB).findOne({no})
-      if(!self) return _t.t422('ADMIN_DELETE_API_02')
+      if(!self) return null
     // delete `no`
       const
         del = await(await cmtDB)
@@ -59,15 +59,19 @@ if(cmt==='1'){
         )
     // delete descendants
       delCount.grand ? delCount.count++ : delCount.grand=true
+      console.log('------- ',delCount.count)
       if(children.length===0) return delCount.count
-      for(const child of children) delCmtDesc(child.no)
+      for(const child of children) await delCmtDesc(child.no)
+      return delCount.count
     }
 
 ///////
   try{
-    console.log(await delCmtDesc(g))
-    console.log(`[${_t.t2+'ADMIN_DEL_REPLY'} 201] Deleted cmt [no::${g}] and its ${delCount.count} descendant replies.`)
-    return NJ({del:1, delCmtCount: delCount.count} as DEL)
+    const delCmtCount = await delCmtDesc(g)
+    if(delCmtCount===null) return _t.t422('ADMIN_DELETE_API_02')
+    if(delCmtCount===undefined) return _t.NJ500
+    console.log(`[${_t.t2+'ADMIN_DEL_REPLY'} 201] Deleted cmt [no::${g}] and its ${delCmtCount} descendant replies.`)
+    return NJ({del:1, delCmtCount} as DEL)
   }catch(_){
     _t.t500('ADMIN_DEL_GESIMUL_UNEXPECTED')
     console.error('Caught:\n'+_)

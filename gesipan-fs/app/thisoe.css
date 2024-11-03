@@ -453,6 +453,8 @@ article h2,#dt{
 #login>p{color:tomato}
 #login>form{display:flex;gap:3pt}
 
+article.admin{min-height:30vh}
+
 /** adminwrap */
 .aw{display:flex;flex:row}
 .aw>:nth-child(1){width:90%}

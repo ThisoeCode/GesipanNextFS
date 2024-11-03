@@ -1,6 +1,6 @@
 import{NextRequest}from"next/server"
 import{NJ,servTitle as _t}from"@/_lib/logsys"
-import{cmtDB}from"@/_lib/_insu"
+import{cmtDB,mainDB}from"@/_lib/_insu"
 import{cmtFormat,TGID}from"@/_lib/conf"
 import type{PUT}from"@/_lib/conf"
 
@@ -21,14 +21,18 @@ export async function PUT(req:NextRequest){_t.t1(req)
     })(cmt.cmt,['cmt_ctt','cmt_name'])
   ){return _t.t422('cmt_0')}
 
+  // Check if post exists
+  if(await(await mainDB).findOne({g:cmt.g})===null)
+    return NJ({thisoeERR:'cmt_PostNotExist'},422)
+
   // Generate OBJ
   const
-  name = cmt.cmt.cmt_name,
-  ctt = cmt.cmt.cmt_ctt,
-  n = name.trim()==='' ? '(Anonymous)' : name.trim(),
-  c = ctt.trim()==='' ? ' ' : ctt,
-  dt = Math.floor(Date.now()/1000),
-  doc:cmtFormat = {no:TGID(), g:cmt.g, n,c,dt,tocmt:'',stat:1,ctc_count:0}
+    name = cmt.cmt.cmt_name,
+    ctt = cmt.cmt.cmt_ctt,
+    n = name.trim()==='' ? '(Anonymous)' : name.trim(),
+    c = ctt.trim()==='' ? ' ' : ctt,
+    dt = Math.floor(Date.now()/1000),
+    doc:cmtFormat = {no:TGID(), g:cmt.g, n,c,dt,tocmt:'',stat:1,ctc_count:0}
 
   // Storing to DB
   try{

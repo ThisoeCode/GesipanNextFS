@@ -7,7 +7,7 @@ import{DelRowBtn}from"./_use_client"
 
 type CTT = HTMLTextAreaElement
 type INPUT = HTMLInputElement
-const failmsg = "Failed to post reply.\nPlease contact Thisoe with your visitor ID: "
+const failmsg = "Failed to post reply.\nThe post or comment you are replying to might has been deleted.\nFor further information, please contact Thisoe with your visitor ID: "
 
 
 

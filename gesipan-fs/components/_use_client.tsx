@@ -24,9 +24,9 @@ export function DelRowBtn({g,txt,cmt=false}:{
       res=await fetch(API+'admin/del/'+g+(cmt?'?cmt=1':'')),
       delRes:DEL = await res.json()
     if(!(res.status<299)){
-      return alert('API ERROR: '+res.status)
+      return alert('UNEXPECTED API ERROR: '+res.status+'\nPlease contact Thisoe with code "CLIENT_BADAPICONNECTION".')
     }
-    delRes?.del
+    delRes?.del===1
       ? (()=>{
           alert(delSuc(delRes.delCmtCount))
           cmt
