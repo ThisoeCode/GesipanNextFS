@@ -23,19 +23,22 @@ export async function PUT(req:NextRequest,{params}:{params:{no:string}}){_t.t1(r
   ){return _t.t422('cmt_0')}
 
   // Check if post exists
-  if(await(await mainDB).findOne({g:ctc.g})===null)
+  if(await(await mainDB).findOne({g:ctc.g})===null){
+    console.error('[--cmt_PostNotExist] ')
+    console.dir(ctc)
     return NJ({thisoeERR:'cmt_PostNotExist'},422)
+  }
 
   // Generate OBJ
   const
-  g = ctc.g,
-  name = ctc.ctc_name,
-  ctt = ctc.ctc_ctt,
-  n = name.trim()==='' ? '(Anonymous)' : name.trim(),
-  c = ctt.trim()==='' ? '(No content)' : ctt,
-  dt = Math.floor(Date.now()/1000),
-  doc:cmtFormat = { no:TGID(),tocmt,n,c,dt,g,stat:1,ctc_count:0 }
-console.log("-------------------------",g)
+    g = ctc.g,
+    name = ctc.ctc_name,
+    ctt = ctc.ctc_ctt,
+    n = name.trim()==='' ? '(Anonymous)' : name.trim(),
+    c = ctt.trim()==='' ? '(No content)' : ctt,
+    dt = Math.floor(Date.now()/1000),
+    doc:cmtFormat = { no:TGID(),tocmt,n,c,dt,g,stat:1,ctc_count:0 }
+
   // Storing to DB
   try{
     try {

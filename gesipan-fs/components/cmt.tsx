@@ -86,6 +86,8 @@ export function Acmt({row,admin}:{row:cmtFormat,admin:boolean}){
       return null
     }
     setPending(true)
+    console.dir(row)
+    console.dir(ctcData)
     const res = await put(ctcData,'cmt/put/'+no)
 
     res ? (()=>{
@@ -209,7 +211,7 @@ function Actc({display,data,admin}:
   data.forEach((v,i)=>{
     rows.push(<Acmt admin={admin}
       key={'k'+i}
-      row={{g:'', c:v.c, n:v.n, dt:v.dt, no:v.no, ctc_count:v.ctc_count}}
+      row={{g:v.g, c:v.c, n:v.n, dt:v.dt, no:v.no, ctc_count:v.ctc_count}}
     />)
   })
 

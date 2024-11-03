@@ -29,7 +29,7 @@ const t2 = 'Thisoe msg::'
 const t3 = 'Thisoe WARNING::'
 const t4 = 'Thisoe FATAL::'
 const t422 = (SERV_ID:string)=>{
-  console.error('【WARNING:４２２】 SERV_ID::'+SERV_ID)
+  console.error('[WARNING:４２２] SERV_ID::'+SERV_ID)
   return NJ({thisoeERR:'Unprocessable Entity'},422)
 }
 const t500 =(process:string)=>{

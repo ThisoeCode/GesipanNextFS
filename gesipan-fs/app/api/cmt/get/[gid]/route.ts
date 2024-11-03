@@ -10,7 +10,7 @@ export async function GET(req:NextRequest,{params}:{params:{gid:string}}){_t.t1(
 
   try{
     const docs = await(await cmtDB)
-      .find({stat:1,tocmt:g},{projection:{'_id':0,'stat':0,'g':0}})
+      .find({stat:1,tocmt:g},{projection:{'_id':0,'stat':0}})
       .sort({'dt':-1})
       .toArray()
 
