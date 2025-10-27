@@ -52,7 +52,7 @@ export async function PUT(req:NextRequest,{params}:{params:{no:string}}){_t.t1(r
         return NJ({rid:id})
       } return NJ({thisoe_err:"Ctc posted but reply count failed to update."},500)
     }catch(e){
-      console.error(`[${_t.t4+pro} 500] Fail to add docu! `+servidMsg)
+      console.error(`[${_t.t5+pro} 500] Fail to add docu! `+servidMsg)
       console.dir([servidMsg,reqbody])
       return NJ({rid:null},500)
     }

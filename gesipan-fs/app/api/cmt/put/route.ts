@@ -43,7 +43,7 @@ export async function PUT(req:NextRequest){_t.t1(req)
       console.log(`[${_t.t2+pro} 201] Added new docu: ObjectId[${id}] `+servidMsg)
       return NJ({rid:id})
     }catch(e){
-      console.error(`[${_t.t4+pro} 500] Fail to add docu! `+servidMsg)
+      console.error(`[${_t.t5+pro} 500] Fail to add docu! `+servidMsg)
       console.dir([servidMsg,reqbody])
       return NJ({rid:null},500)
     }

@@ -37,9 +37,9 @@ export default async function ACTION(
         console.log(`[${t.t2+pro} 200] Added new docu: ObjectId[${id}]`)
         revalidatePath('/')
       }catch(e){
-        console.error(`[${t.t4+pro} 500] Fail to add document!`)
+        console.error(`[${t.t5+pro} 500] Fail to add document!`)
         console.dir(formData)
-        return `[${t.t4}500] Post failed.`
+        return `[${t.t5}500] Post failed.`
       }
     }catch(_){
       t.t500(pro+':0100100')

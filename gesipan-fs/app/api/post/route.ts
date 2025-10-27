@@ -36,7 +36,7 @@ import{NJ,servTitle as t}from"@/_lib/logsys"
 //       console.log(`[${t.t2+pro} 200] Added new docu: ObjectId[${id}]`)
 //       return NJ({rid:id})
 //     }catch(e){
-//       console.error(`[${t.t4+pro} 500] Fail to add docu!`)
+//       console.error(`[${t.t5+pro} 500] Fail to add docu!`)
 //       console.dir(reqbody)
 //       return NJ({rid:null},500)
 //     }

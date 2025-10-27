@@ -89,6 +89,7 @@ nav hr{
 main,#loading{
   /* min-height: calc = 100vh - header - nav - main_margin - footer */
   width:90%; min-height:calc(100vh - 36pt - 35pt - 9px - 81px);
+  /* dvh */  min-height:calc(100dvh - 36pt - 35pt - 9px - 81px);
   margin:0 5% 9px; padding:0;border:0;
   overflow:auto;
 }

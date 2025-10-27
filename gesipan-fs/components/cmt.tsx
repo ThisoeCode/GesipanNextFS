@@ -1,7 +1,7 @@
 'use client'
 import{API,cmtFormat}from"@/_lib/conf"
 import{timeDiff}from"@/_lib/timecalc"
-import React,{useState,ChangeEvent as e,useRef,useEffect, Fragment}from"react"
+import React,{useState,ChangeEvent as e,useRef,useEffect}from"react"
 import{put}from"./_use_serv"
 import{DelRowBtn}from"./_use_client"
 
@@ -206,8 +206,7 @@ function ShowCtc({count,under,admin}:{count:number,under:string,admin:boolean}){
 function Actc({display,data,admin}:
   {display:string,data:cmtFormat[],admin:boolean}
 ){
-  const
-  rows:JSX.Element[] = []
+  const rows:JSX.Element[] = []
   data.forEach((v,i)=>{
     rows.push(<Acmt admin={admin}
       key={'k'+i}

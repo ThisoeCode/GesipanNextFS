@@ -15,22 +15,14 @@ export const TGID = ()=>{
   let dt = Date.now(), result = ""
   const base64 = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_"
   do{
-      result = base64[dt%64] + result
-      dt = Math.floor(dt/64)
+    result = base64[dt%64] + result
+    dt = Math.floor(dt/64)
   } while (dt > 0)
   // make UUID
   const regx=/^.*?(-)/
   const x = crypto.randomUUID(), uu = regx.exec(x)
   return result+(uu?uu[0]:`bruh_${x}`).slice(0,-1)
 }
-
-/** Delay */
-export function sleepReturn(napTimeInMS:number, callback:()=>Thisoe){
-  (new Promise((resolve)=>{setTimeout(()=>{
-    resolve(callback())
-  } ,napTimeInMS)}))
-}
-
 
 // TYPES preThisoe
 import{WithId,WithoutId,Document}from"mongodb"
