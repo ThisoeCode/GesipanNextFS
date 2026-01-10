@@ -470,7 +470,7 @@ article.admin{min-height:30vh}
 
 .aw>#th,#del-th{background:#ace}
 
-.tr{}
+/* .tr{} */
 
 article.admin>button{
   float:right;
