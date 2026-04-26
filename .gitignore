@@ -2,6 +2,8 @@
 .vscode/
 TODO
 *.txt
+# ABANDONED FORK DIR
+gesipan-rt/
 
 
 # dependencies

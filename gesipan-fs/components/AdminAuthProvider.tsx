@@ -4,7 +4,7 @@ import{redirect}from'next/navigation'
 export default async function AdminAuthProvider({children,searchParams}
   :Readonly<{children:React.ReactNode,searchParams?:{err?:string}}>
 ){
-  searchParams?.err==='badpw' && redirect('/adminlogin?err=badpw')
+  if(searchParams?.err==='badpw') redirect('/adminlogin?err=badpw')
   const session = await getSession()
   if(!session){
     logout()

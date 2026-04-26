@@ -52,13 +52,14 @@ if(cmt==='1'){
           .deleteOne({no}),
         children = await(await cmtDB)
           .find({tocmt:no}).toArray()
-      del.deletedCount &&
+      if(del.deletedCount)
         await(await cmtDB).updateOne(
           {no: self.tocmt},
           {$inc: {ctc_count: -1}}
         )
     // delete descendants
-      delCount.grand ? delCount.count++ : delCount.grand=true
+      if(delCount.grand)delCount.count++
+        else{delCount.grand=true}
       console.log('------- ',delCount.count)
       if(children.length===0) return delCount.count
       for(const child of children) await delCmtDesc(child.no)

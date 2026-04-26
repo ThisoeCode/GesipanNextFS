@@ -26,14 +26,12 @@ export function DelRowBtn({g,txt,cmt=false}:{
     if(!(res.status<299)){
       return alert('UNEXPECTED API ERROR: '+res.status+'\nPlease contact Thisoe with code "CLIENT_BADAPICONNECTION".')
     }
-    delRes?.del===1
-      ? (()=>{
-          alert(delSuc(delRes.delCmtCount))
-          cmt
-            ? window.location.reload()
-            : setTimeout(()=>{r('/admin')}, 99)
-        })()
-      : alert('Failed to delete:\n'+(cmt?'Reply':'Post')+' NO. '+g)
+    if(delRes?.del===1){
+      alert(delSuc(delRes.delCmtCount))
+      if(cmt) window.location.reload()
+      else setTimeout(()=>{r('/admin')}, 99)
+    }
+    else alert('Failed to delete:\n'+(cmt?'Reply':'Post')+' NO. '+g)
   }
   return<button className={cmt?'delcmt':''} onClick={del}>{txt}</button>
 }

@@ -35,11 +35,10 @@ export function AddCmt({g}:{g:string}){
     }
     const res = await put({cmt,g},'cmt/put')
 
-    res ? (()=>{
-          setPending(false)
-          alert(failmsg+res)
-        })()
-    : setTimeout(()=>window.location.reload(),233)
+    if(res){
+      setPending(false)
+      alert(failmsg+res)
+    }else{setTimeout(()=>window.location.reload(),233)}
   }
 
   return<i id="newcomment" className="newcomment">
@@ -48,7 +47,7 @@ export function AddCmt({g}:{g:string}){
       id="c-content"
       style={isFocused?{height:'48pt'}:{}}
       placeholder="Add a comment..."
-      onFocus={()=>{isFocused||setFocus(true)}}
+      onFocus={()=>{if(!isFocused)setFocus(true)}}
       onChange={ch.ctt}
     ></textarea>
     <div style={isFocused?{}:{display:'none'}}>
@@ -90,11 +89,10 @@ export function Acmt({row,admin}:{row:cmtFormat,admin:boolean}){
     console.dir(ctcData)
     const res = await put(ctcData,'cmt/put/'+no)
 
-    res ? (()=>{
-          setPending(false)
-          alert(failmsg+res)
-        })()
-    : window.location.reload()
+    if(res){
+      setPending(false)
+      alert(failmsg+res)
+    }else{window.location.reload()}
   },
 
   replyRef=useRef<HTMLTextAreaElement>(null),
@@ -102,7 +100,7 @@ export function Acmt({row,admin}:{row:cmtFormat,admin:boolean}){
     setReply(true)
   }
   useEffect(()=>{
-    replyRef.current&&isReplying&&replyRef.current.focus()
+    if(replyRef.current&&isReplying) replyRef.current.focus()
   }, [isReplying])
 
   return<div className="a-cmt">

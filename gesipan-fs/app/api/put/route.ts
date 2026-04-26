@@ -40,7 +40,7 @@ export async function PUT(req:NextRequest){_t.t1(req)
       return NJ({rid:id})
     }catch(e){
       console.error(`[${_t.t5+pro} 500] Fail to add docu! `+servidMsg)
-      console.dir([servidMsg,reqbody])
+      console.dir([servidMsg,reqbody,e])
       return NJ({rid:null},500)
     }
   }catch(_){

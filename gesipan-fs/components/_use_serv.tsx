@@ -38,7 +38,7 @@ export default async function ACTION(
         revalidatePath('/')
       }catch(e){
         console.error(`[${t.t5+pro} 500] Fail to add document!`)
-        console.dir(formData)
+        if(e) console.dir(formData)
         return `[${t.t5}500] Post failed.`
       }
     }catch(_){

@@ -3,12 +3,11 @@ import{FormEvent,useState}from"react"
 import{put}from"./_use_serv"
 import{useRouter}from"next/navigation"
 
-interface props {
-  
-  
-}
+// interface props {
+//   
+// }
 
-export default function PutForm({}:props){
+export default function PutForm({}/* :props */){
   // prevent `Enter` key's default
   const
   e =
@@ -37,11 +36,11 @@ export default function PutForm({}:props){
     }
     const res = await put(data,'put')
 
-    res ? (()=>{
-          setPending(false)
-          alert("Failed to post.\nPlease contact Thisoe with your visitor ID: "+res)
-        })()
-    : r.push('gesipan?posted')
+    if(res){
+      setPending(false)
+      alert("Failed to post.\nPlease contact Thisoe with your visitor ID: "+res)
+    }
+    else{r.push('gesipan?posted')}
   }
 
   return <form id="post"

@@ -5,7 +5,7 @@ export default async function _({searchParams}:{searchParams?:{err?:string}}){
   const
     session = await getSession(),
     err=(_:string)=>_===searchParams?.err
-  session && redirect('/admin')
+  if(session)redirect('/admin')
   return <i id='login'>
     <p>{
       err('badpw') ? 'Wrong password.' :
